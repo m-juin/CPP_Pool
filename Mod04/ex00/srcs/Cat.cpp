@@ -25,3 +25,8 @@ Cat &Cat::operator=(const Cat &src)
 	std::cout << "An animal of type Cat was created by copy assignement constructor!" << std::endl;
 	return (*this);
 }
+
+void Cat::makeSound() const
+{
+	std::cout << "Miaou" << std::endl; 
+}

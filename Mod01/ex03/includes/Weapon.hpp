@@ -6,7 +6,7 @@
 /*   By: mjuin <mjuin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 14:16:50 by mjuin             #+#    #+#             */
-/*   Updated: 2023/02/28 15:52:58 by mjuin            ###   ########.fr       */
+/*   Updated: 2023/03/29 11:41:01 by mjuin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ class Weapon
 	public:
 		Weapon(std::string type);
 		~Weapon();
-		const std::string getType();
+		const std::string &getType();
 		void setType(std::string newType);
 	private:
 		std::string type;

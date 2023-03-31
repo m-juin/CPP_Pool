@@ -6,7 +6,7 @@
 /*   By: mjuin <mjuin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 11:20:17 by mjuin             #+#    #+#             */
-/*   Updated: 2023/02/28 13:47:31 by mjuin            ###   ########.fr       */
+/*   Updated: 2023/03/29 11:40:08 by mjuin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,6 @@ int main()
 	std::cout << "stringREF Address = " << &stringREF << std::endl;
 
 	std::cout << "str value = " << str << std::endl;
-	std::cout << "stringPTR Address = " << *stringPTR << std::endl;
-	std::cout << "stringREF Address = " << stringREF << std::endl;
+	std::cout << "stringPTR value = " << *stringPTR << std::endl;
+	std::cout << "stringREF value = " << stringREF << std::endl;
 }

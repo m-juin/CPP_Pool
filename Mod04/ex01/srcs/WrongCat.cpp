@@ -8,7 +8,7 @@ WrongCat::WrongCat() : WrongAnimal::WrongAnimal()
 
 WrongCat::WrongCat(const WrongCat &src) : WrongAnimal(src)
 {
-	type = src.type;
+	(*this) = src;
 	std::cout << "An animal of type WrongCat was created by copy constructor!" << std::endl;
 }
 
@@ -24,4 +24,9 @@ WrongCat &WrongCat::operator=(const WrongCat &src)
 	type = src.type;
 	std::cout << "An animal of type WrongCat was created by copy assignement constructor!" << std::endl;
 	return (*this);
+}
+
+void WrongCat::makeSound() const
+{
+	std::cout << "Miaou" << std::endl;
 }

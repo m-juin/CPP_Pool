@@ -9,8 +9,8 @@ Dog::Dog() : Animal::Animal()
 
 Dog::Dog(const Dog &src) : Animal(src)
 {
-	type = src.type;
-	brain = new Brain(*src.brain);
+	brain = new Brain();
+	(*this) = src;
 	std::cout << "An animal of type Dog was created by copy constructor!" << std::endl;
 }
 
@@ -25,8 +25,20 @@ Dog &Dog::operator=(const Dog &src)
 	if (&src == this)
 		return (*this);
 	type = src.type;
-	delete (brain);
-	brain = src.brain;
+	for (size_t i = 0; i < 100; i++)
+	{
+		this->brain->setIdea(i, "Waouf");
+	}
 	std::cout << "An animal of type Dog was created by copy assignement constructor!" << std::endl;
 	return (*this);
+}
+
+void Dog::makeSound() const
+{
+	std::cout << "Waouf" << std::endl; 
+}
+
+void Dog::getIdea(const int index) const
+{
+	std::cout << "this dog " << index << " idea is : " << (this->brain->getIdea(index)) << std::endl;
 }

@@ -6,7 +6,7 @@
 /*   By: mjuin <mjuin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 15:17:33 by mjuin             #+#    #+#             */
-/*   Updated: 2023/02/28 15:35:50 by mjuin            ###   ########.fr       */
+/*   Updated: 2023/03/29 11:40:57 by mjuin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ Weapon::~Weapon()
 {
 }
 
-const std::string Weapon::getType()
+const std::string &Weapon::getType()
 {
 	return (this->type);
 }

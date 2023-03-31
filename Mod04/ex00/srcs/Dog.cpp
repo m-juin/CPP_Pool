@@ -1,6 +1,6 @@
 #include <Dog.hpp>
 
-Dog::Dog() : Animal::Animal()
+Dog::Dog()
 {
 	type = "Dog";
 	std::cout << "An animal of type Dog was created by default constructor!" << std::endl;
@@ -8,7 +8,7 @@ Dog::Dog() : Animal::Animal()
 
 Dog::Dog(const Dog &src) : Animal(src)
 {
-	type = src.type;
+	(*this) = src;
 	std::cout << "An animal of type Dog was created by copy constructor!" << std::endl;
 }
 
@@ -24,4 +24,9 @@ Dog &Dog::operator=(const Dog &src)
 	type = src.type;
 	std::cout << "An animal of type Dog was created by copy assignement constructor!" << std::endl;
 	return (*this);
+}
+
+void Dog::makeSound() const
+{
+	std::cout << "Waouf" << std::endl; 
 }

@@ -7,7 +7,7 @@ Animal::Animal()
 
 Animal::Animal(const Animal &src)
 {
-	type = src.type;
+	(*this) = src;
 	std::cout << "An animal was created by copy constructor!" << std::endl;
 }
 
@@ -34,10 +34,5 @@ std::string Animal::getType() const
 
 void Animal::makeSound() const
 {
-	if (type.empty() == 1)
-		std::cout << ">>___<<" << std::endl;
-	else if (type == "Dog")
-		std::cout << "Wouf!" << std::endl;
-	else if (type == "Cat")
-		std::cout << "Miaou!" << std::endl;
+	std::cout << ">>___<<" << std::endl;
 }

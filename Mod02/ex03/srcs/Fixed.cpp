@@ -60,59 +60,59 @@ std::ostream	&operator<<(std::ostream& os, const Fixed& f)
 	return os;
 }
 
-float Fixed::operator+(Fixed const &F2)
+float operator+(Fixed const &F1, Fixed const &F2)
 {
-	return (this->toFloat() + F2.toFloat());
+	return (F1.toFloat() + F2.toFloat());
 }
 
-float Fixed::operator-(Fixed const &F2)
+float operator-(Fixed const &F1, Fixed const &F2)
 {
-	return (this->toFloat() - F2.toFloat());
+	return (F1.toFloat() - F2.toFloat());
 }
 
-float Fixed::operator/(Fixed const &F2)
+float operator/(Fixed const &F1, Fixed const &F2)
 {
-	return (this->toFloat() / F2.toFloat());
+	return (F1.toFloat() / F2.toFloat());
 }
 
-float Fixed::operator*(Fixed const &F2)
+float operator*(Fixed const &F1, Fixed const &F2)
 {
-	return (this->toFloat() * F2.toFloat());
+	return (F1.toFloat() * F2.toFloat());
 }
 
-bool operator>(Fixed const& F1, Fixed const& F2)
+bool operator>(Fixed const &F1, Fixed const &F2)
 {
 	return (F1.toFloat() > F2.toFloat());
 }
 
-bool operator<(Fixed const& F1, Fixed const& F2)
+bool operator<(Fixed const &F1, Fixed const &F2)
 {
 	return (F1.toFloat() < F2.toFloat());
 }
 
-bool operator>=(Fixed const& F1, Fixed const& F2)
+bool operator>=(Fixed const &F1, Fixed const &F2)
 {
 	return (F1.toFloat() >= F2.toFloat());
 }
 
-bool operator<=(Fixed const& F1, Fixed const& F2)
+bool operator<=(Fixed const &F1, Fixed const &F2)
 {
 	return (F1.toFloat() <= F2.toFloat());
 }
 
-bool operator!=(Fixed const& F1, Fixed const& F2)
+bool operator!=(Fixed const &F1, Fixed const &F2)
 {
 	return (F1.toFloat() != F2.toFloat());
 }
 
-bool operator==(Fixed const& F1, Fixed const& F2)
+bool operator==(Fixed const &F1, Fixed const &F2)
 {
 	return (F1.toFloat() == F2.toFloat());
 }
 
 Fixed&	Fixed::operator++()
 {
-	this->_value++;
+	this->_value += 1;
 	return (*this);
 }
 
@@ -136,22 +136,22 @@ Fixed	Fixed::operator--(int)
 	return (tmp);
 }
 
-float Fixed::min(Fixed &F1, Fixed &F2)
+Fixed Fixed::min(Fixed &F1, Fixed &F2)
 {
-	return F1.toFloat() < F2.toFloat() ? F1._value : F2._value;
+	return F1.toFloat() < F2.toFloat() ? F1 : F2;
 }
 
-float	Fixed::min(Fixed const& F1, Fixed const& F2)
+Fixed const Fixed::min(Fixed const &F1, Fixed const &F2)
 {
-	return F1.toFloat() < F2.toFloat() ? F1._value : F2._value;
+	return F1.toFloat() < F2.toFloat() ? F1 : F2;
 }
 
-float Fixed::max(Fixed &F1, Fixed &F2)
+Fixed Fixed::max(Fixed &F1, Fixed &F2)
 {
-	return F1.toFloat() > F2.toFloat() ? F1._value : F2._value;
+	return F1.toFloat() > F2.toFloat() ? F1 : F2;
 }
 
-float	Fixed::max(Fixed const& F1, Fixed const& F2)
+Fixed const Fixed::max(Fixed const &F1, Fixed const &F2)
 {
-	return F1.toFloat() > F2.toFloat() ? F1._value : F2._value;
+	return F1.toFloat() > F2.toFloat() ? F1 : F2;
 }
