@@ -20,10 +20,7 @@ ScavTrap::ScavTrap(std::string Name) : ClapTrap(Name)
 
 ScavTrap::ScavTrap(const ScavTrap &src) : ClapTrap(src)
 {
-	this->Name = src.Name;
-	this->HitPoints = src.HitPoints;
-	this->EnergyPoint = src.EnergyPoint;
-	this->AttackDamage = src.AttackDamage;
+	*this = src;
 	std::cout << this->Name << " was created with ScavTrap copy constructor!" << std::endl;
 }
 

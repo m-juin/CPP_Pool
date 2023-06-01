@@ -10,6 +10,7 @@ class ICharacter;
 class AMateria
 {
 	public:
+		AMateria();
 		AMateria(std::string const & type);
 		AMateria(const AMateria&src);
 		virtual ~AMateria();

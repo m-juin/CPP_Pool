@@ -3,18 +3,18 @@
 Cure::Cure() : AMateria::AMateria("cure")
 {
 	_type = ("cure");
-	std::cout << "An cure materia was created with default constructor!" << std::endl;
+	//std::cout << "An cure materia was created with default constructor!" << std::endl;
 }
 
 Cure::Cure(const Cure &src) : AMateria::AMateria(src)
 {
 	_type = src._type;
-	std::cout << "An cure materia was created with copy constructor!" << std::endl;
+	//std::cout << "An cure materia was created with copy constructor!" << std::endl;
 }
 
 Cure::~Cure()
 {
-	std::cout << "An cure materia was destroyed!" << std::endl;
+	//std::cout << "An cure materia was destroyed!" << std::endl;
 }
 
 Cure &Cure::operator=(const Cure &src)
@@ -22,7 +22,7 @@ Cure &Cure::operator=(const Cure &src)
 	if (&src == this)
 		return (*this);
 	_type = src._type;
-	std::cout << "An cure materia was created with copy assignement constructor!" << std::endl;
+	//std::cout << "An cure materia was created with copy assignement constructor!" << std::endl;
 	return (*this);
 }
 

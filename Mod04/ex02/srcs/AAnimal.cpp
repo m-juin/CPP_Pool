@@ -7,7 +7,7 @@ AAnimal::AAnimal()
 
 AAnimal::AAnimal(const AAnimal &src)
 {
-	type = src.type;
+	(*this) = src;
 	std::cout << "An animal was created by copy constructor!" << std::endl;
 }
 
@@ -30,4 +30,9 @@ AAnimal &AAnimal::operator=(const AAnimal &src)
 std::string AAnimal::getType() const
 {
 	return (type);
+}
+
+void AAnimal::getIdea() const
+{
+	std::cout << "this is a basic animal, he doesn't have a brain" << std::endl;
 }

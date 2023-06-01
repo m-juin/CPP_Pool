@@ -25,3 +25,8 @@ WrongCat &WrongCat::operator=(const WrongCat &src)
 	std::cout << "An animal of type WrongCat was created by copy assignement constructor!" << std::endl;
 	return (*this);
 }
+
+void WrongCat::makeSound() const
+{
+	std::cout << "Miaou" << std::endl;
+}

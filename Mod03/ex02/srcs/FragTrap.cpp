@@ -1,5 +1,14 @@
 #include <FragTrap.hpp>
 
+FragTrap::FragTrap() : ClapTrap()
+{
+	this->Name = "";
+	this->HitPoints = 100;
+	this->EnergyPoint = 100;
+	this->AttackDamage = 30;
+	std::cout << "An unknown was created with FragTrap default constructor!" << std::endl;
+}
+
 FragTrap::FragTrap(std::string Name) : ClapTrap(Name)
 {
 	this->Name = Name;
@@ -11,10 +20,7 @@ FragTrap::FragTrap(std::string Name) : ClapTrap(Name)
 
 FragTrap::FragTrap(const FragTrap &src) : ClapTrap(src)
 {
-	this->Name = src.Name;
-	this->HitPoints = src.HitPoints;
-	this->EnergyPoint = src.EnergyPoint;
-	this->AttackDamage = src.AttackDamage;
+	*this = src;
 	std::cout << this->Name << " was created with FragTrap copy constructor!" << std::endl;
 }
 
@@ -25,6 +31,8 @@ FragTrap::~FragTrap()
 
 FragTrap &FragTrap::operator=(const FragTrap &src)
 {
+	if (this == &src)
+		return (*this);
 	this->Name = src.Name;
 	this->HitPoints = src.HitPoints;
 	this->EnergyPoint = src.EnergyPoint;
@@ -45,5 +53,6 @@ void FragTrap::highFivesGuys(void)
 		std::cout << "FragTrap " << this->Name << " his dead!" << std::endl;
 		return ;
 	}
-	std::cout << this->Name << " high fives!" << std::endl;
+	std::cout << this->Name << " request a high fives!" << std::endl;
+	EnergyPoint--;
 }

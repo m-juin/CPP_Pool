@@ -21,10 +21,7 @@ ClapTrap::ClapTrap(std::string Name)
 
 ClapTrap::ClapTrap(const ClapTrap &src)
 {
-	this->Name = src.Name;
-	this->HitPoints = src.HitPoints;
-	this->AttackDamage = src.AttackDamage;
-	this->EnergyPoint = src.EnergyPoint;
+	*this = src;
 	std::cout << "Claptrap " << this->Name << " was created with copy constructor!" << std::endl;
 }
 
@@ -35,6 +32,8 @@ ClapTrap::~ClapTrap()
 
 ClapTrap &ClapTrap::operator=(const ClapTrap &src)
 {
+	if(this == &src)
+		return (*this);
 	this->Name = src.Name;
 	this->HitPoints = src.HitPoints;
 	this->AttackDamage = src.AttackDamage;

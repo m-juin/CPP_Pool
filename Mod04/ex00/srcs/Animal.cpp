@@ -24,6 +24,7 @@ Animal &Animal::operator=(const Animal &src)
 	if (&src == this)
 		return (*this);
 	type = src.type;
+	std::cout << "A not typed animal was created by copy assignement constructor!" << std::endl;
 	return (*this);
 }
 

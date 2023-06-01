@@ -1,15 +1,14 @@
 #include <Dog.hpp>
 
-Dog::Dog() : Animal::Animal()
+Dog::Dog() : Animal::Animal(), brain(NULL)
 {
 	type = "Dog";
 	brain = new Brain();
 	std::cout << "An animal of type Dog was created by default constructor!" << std::endl;
 }
 
-Dog::Dog(const Dog &src) : Animal(src)
+Dog::Dog(const Dog &src) : Animal(src), brain(NULL)
 {
-	brain = new Brain();
 	(*this) = src;
 	std::cout << "An animal of type Dog was created by copy constructor!" << std::endl;
 }
@@ -25,10 +24,7 @@ Dog &Dog::operator=(const Dog &src)
 	if (&src == this)
 		return (*this);
 	type = src.type;
-	for (size_t i = 0; i < 100; i++)
-	{
-		this->brain->setIdea(i, "Waouf");
-	}
+	brain = new Brain(*src.brain);
 	std::cout << "An animal of type Dog was created by copy assignement constructor!" << std::endl;
 	return (*this);
 }

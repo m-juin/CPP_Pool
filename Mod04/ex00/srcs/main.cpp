@@ -16,6 +16,8 @@ int main( void )
 	std::cout << tata->getType() << " " << std::endl;
 	std::cout << titi->getType() << " " << std::endl;
 
+	std::cout << std::endl;
+
 	i->makeSound();
 	meta->makeSound();
 	toto->makeSound();

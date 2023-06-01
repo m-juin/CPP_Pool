@@ -5,20 +5,13 @@ Character::Character(std::string Name)
 	_name = Name;
 	for (size_t i = 0; i < 4; i++)
 		_inventory[i] = NULL;
-	std::cout << "Character " << Name << " was created with default constructor!" << std::endl;
+	//std::cout << "Character " << Name << " was created with default constructor!" << std::endl;
 }
 
 Character::Character(const Character &src)
 {
-	_name = src._name;
-	for (size_t i = 0; i < 4; i++)
-	{
-		if (src._inventory[i] != NULL)
-			_inventory[i] = src._inventory[i]->clone();
-		else
-			_inventory[i] = NULL;
-	}
-	std::cout << "Character " << _name << " was created with copy constructor!" << std::endl;
+	*this = src;
+	//std::cout << "Character " << _name << " was created with copy constructor!" << std::endl;
 }
 
 Character::~Character()
@@ -26,7 +19,7 @@ Character::~Character()
 	for (size_t i = 0; i < 4; i++)
 		if (_inventory[i] != NULL)
 				delete (_inventory[i]);
-	std::cout << "Character " << _name << " was destroyed!" <<std::endl;
+	//std::cout << "Character " << _name << " was destroyed!" <<std::endl;
 }
 
 Character &Character::operator=(const Character &src)
@@ -38,8 +31,8 @@ Character &Character::operator=(const Character &src)
 				delete (_inventory[i]);
 	_name = src._name;
 	for (size_t i = 0; i < 4; i++)
-		_inventory[i] = src._inventory[i];
-	std::cout << "Character " << _name << " was created with copy assignement constructor!" << std::endl;
+		_inventory[i] = src._inventory[i]->clone();
+	//std::cout << "Character " << _name << " was created with copy assignement constructor!" << std::endl;
 	return (*this);
 }
 
@@ -58,8 +51,8 @@ void Character::equip(AMateria *m)
 			return ;
 		if (_inventory[i] == NULL)
 		{
-				_inventory[i] = m;
-				return ;
+			_inventory[i] = m;
+			return ;
 		}
 	}
 }
@@ -70,9 +63,6 @@ void Character::unequip(int idx)
 		return ;
 	if (_inventory[idx] == NULL)
 		return ;
-	if (_LastMateria != NULL)
-		delete(_LastMateria);
-	_LastMateria = _inventory[idx];
 	_inventory[idx] = NULL;
 }
 

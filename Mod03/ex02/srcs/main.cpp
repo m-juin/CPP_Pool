@@ -26,4 +26,9 @@ int main( void )
 	Bib.takeDamage(20);
 	Bib.beRepaired(5);
 	toto.highFivesGuys();
+	for (size_t i = 0; i < 100; i++)
+	{
+		toto.highFivesGuys();
+	}
+	
 }

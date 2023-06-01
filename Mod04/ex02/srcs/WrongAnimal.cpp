@@ -34,8 +34,5 @@ std::string WrongAnimal::getType() const
 
 void WrongAnimal::makeSound() const
 {
-	if (type.empty() == 1)
-		std::cout << "<<___>>" << std::endl;
-	else if (type == "WrongCat")
-		std::cout << "Grout!" << std::endl;
+	std::cout << "Wrong" << std::endl;
 }

@@ -35,7 +35,7 @@ Fixed &Fixed::operator=(const Fixed &src)
 	if (&src == this)
 		return(*this);
 	std::cout << "Copy assignment operator called" << std::endl;
-    _value = src._value;
+    _value = roundf(src.toFloat() * (1 << bits));
     return *this;
 }
 

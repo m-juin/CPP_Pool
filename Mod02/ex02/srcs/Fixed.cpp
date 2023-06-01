@@ -29,7 +29,7 @@ Fixed &Fixed::operator=(const Fixed &src)
 {
 	if (&src == this)
 		return(*this);
-    _value = src._value;
+    _value = roundf(src.toFloat() * (1 << bits));
     return *this;
 }
 
@@ -112,13 +112,13 @@ bool operator==(Fixed const &F1, Fixed const &F2)
 
 Fixed&	Fixed::operator++()
 {
-	this->_value += 1;
+	this->_value++;
 	return (*this);
 }
 
 Fixed	Fixed::operator++(int)
 {
-	Fixed tmp(this->_value);
+	Fixed tmp(*this);
 	this->_value++;
 	return (tmp);
 }
@@ -131,7 +131,7 @@ Fixed&	Fixed::operator--()
 
 Fixed	Fixed::operator--(int)
 {
-	Fixed tmp(this->_value);
+	Fixed tmp(*this);
 	this->_value--;
 	return (tmp);
 }

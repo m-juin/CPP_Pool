@@ -9,8 +9,7 @@ DiamondTrap::DiamondTrap(std::string name) : ClapTrap(name), FragTrap(name), Sca
 
 DiamondTrap::DiamondTrap(const DiamondTrap &src) :ClapTrap(src), FragTrap(src), ScavTrap(src)
 {
-
-	this->Name = src.Name;
+	*this = src;
 	std::cout << Name << " was created with DiamondTrap copy constructor" << std::endl;
 }
 

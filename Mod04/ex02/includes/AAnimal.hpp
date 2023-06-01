@@ -13,7 +13,8 @@ class AAnimal
 		AAnimal(const AAnimal&src);
 		AAnimal &operator=(const AAnimal&);
 		std::string getType() const;
-		virtual void makeSound() = 0;
+		virtual void makeSound() const = 0;
+		virtual void getIdea() const;
 		std::string type;
 };
 

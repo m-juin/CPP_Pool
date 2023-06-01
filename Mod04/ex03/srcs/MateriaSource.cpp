@@ -4,19 +4,13 @@ MateriaSource::MateriaSource()
 {
 	for (size_t i = 0; i < 4; i++)
 		_inventory[i] = NULL;
-	std::cout << "A new MateriaSource was created with default constructor!" << std::endl;
+	//std::cout << "A new MateriaSource was created with default constructor!" << std::endl;
 }
 
 MateriaSource::MateriaSource(const MateriaSource &src)
 {
-	for (size_t i = 0; i < 4; i++)
-	{
-		if (src._inventory[i] != NULL)
-			_inventory[i] = src._inventory[i]->clone();
-		else
-			_inventory[i] = NULL;
-	}
-	std::cout << "A new MateriaSource was created with copy constructor!" << std::endl;
+	*this = src;
+	//std::cout << "A new MateriaSource was created with copy constructor!" << std::endl;
 }
 
 MateriaSource::~MateriaSource()
@@ -24,7 +18,7 @@ MateriaSource::~MateriaSource()
 	for (size_t i = 0; i < 4; i++)
 		if (_inventory[i] != NULL)
 				delete (_inventory[i]);
-	std::cout << "A MateriaSource was destroyed!" << std::endl;
+	//std::cout << "A MateriaSource was destroyed!" << std::endl;
 }
 
 MateriaSource &MateriaSource::operator=(const MateriaSource &src)
@@ -35,8 +29,8 @@ MateriaSource &MateriaSource::operator=(const MateriaSource &src)
 		if (_inventory[i] != NULL)
 				delete (_inventory[i]);
 	for (size_t i = 0; i < 4; i++)
-		_inventory[i] = src._inventory[i];
-	std::cout << "A new MateriaSource was created with copy assignement constructor!" << std::endl;
+		_inventory[i] = src._inventory[i]->clone();
+	//std::cout << "A new MateriaSource was created with copy assignement constructor!" << std::endl;
 	return (*this);
 }
 

@@ -19,10 +19,7 @@ FragTrap::FragTrap(std::string Name) : ClapTrap(Name)
 
 FragTrap::FragTrap(const FragTrap &src) : ClapTrap(src)
 {
-	this->Name = src.Name;
-	this->HitPoints = src.HitPoints;
-	this->EnergyPoint = src.EnergyPoint;
-	this->AttackDamage = src.AttackDamage;
+	*this = src;
 	std::cout << this->Name << " was created with FragTrap copy constructor!" << std::endl;
 }
 
@@ -56,4 +53,5 @@ void FragTrap::highFivesGuys(void)
 		return ;
 	}
 	std::cout << this->Name << " high fives!" << std::endl;
+	EnergyPoint--;
 }

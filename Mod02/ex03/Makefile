@@ -6,7 +6,7 @@
 #    By: mjuin <mjuin@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/15 15:23:54 by mjuin             #+#    #+#              #
-#    Updated: 2023/03/21 14:26:58 by mjuin            ###   ########.fr        #
+#    Updated: 2023/04/05 10:45:04 by mjuin            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,8 @@ NAME =	Fixed
 
 SRC =	srcs/main.cpp \
 		srcs/Fixed.cpp \
-		srcs/Point.cpp
+		srcs/Point.cpp \
+		srcs/bsp.cpp
 
 OBJ =	${SRC:.cpp=.o}
 

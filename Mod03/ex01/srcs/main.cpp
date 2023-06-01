@@ -25,4 +25,9 @@ int main( void )
 	toto.attack("bib");
 	Bib.takeDamage(20);
 	Bib.beRepaired(5);
+	for (size_t i = 0; i < 50; i++)
+	{
+		toto.attack("bib");
+	}
+	
 }
