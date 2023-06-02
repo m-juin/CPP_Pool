@@ -6,7 +6,7 @@
 #    By: mjuin <mjuin@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/15 15:23:54 by mjuin             #+#    #+#              #
-#    Updated: 2023/06/02 12:18:16 by mjuin            ###   ########.fr        #
+#    Updated: 2023/06/02 14:01:57 by mjuin            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ CFLAGS =	-g -Werror -Wextra -Wall -std=c++98 -I./includes
 
 NAME =	convert
 
-SRC =	srcs/ScalarConverter.cpp \
+SRC =	srcs/Base.cpp \
 		srcs/main.cpp
 
 OBJ =	${SRC:.cpp=.o}

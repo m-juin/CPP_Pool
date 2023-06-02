@@ -6,7 +6,7 @@
 /*   By: mjuin <mjuin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 10:18:01 by mjuin             #+#    #+#             */
-/*   Updated: 2023/05/31 13:51:57 by mjuin            ###   ########.fr       */
+/*   Updated: 2023/06/02 14:16:52 by mjuin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -223,7 +223,7 @@ void tryNotGoodGradeExecPresidential()
 void tryValidShrubbery()
 {
 	Bureaucrat toto("toto", 1);
-	AForm *BaseForm = new ShrubberyCreationForm("");
+	AForm *BaseForm = new ShrubberyCreationForm("House");
 	try
 	{
 		toto.signForm(BaseForm);

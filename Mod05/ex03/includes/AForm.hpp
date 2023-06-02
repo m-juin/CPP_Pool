@@ -6,14 +6,13 @@
 /*   By: mjuin <mjuin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 13:15:29 by mjuin             #+#    #+#             */
-/*   Updated: 2023/05/30 15:40:47 by mjuin            ###   ########.fr       */
+/*   Updated: 2023/06/02 14:17:22 by mjuin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FORM_HPP
 #define FORM_HPP
 
-#include <iostream>
 #include <cstdlib>
 #include "Bureaucrat.hpp"
 

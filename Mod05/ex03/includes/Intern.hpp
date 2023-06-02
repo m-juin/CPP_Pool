@@ -6,14 +6,13 @@
 /*   By: mjuin <mjuin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 13:09:38 by mjuin             #+#    #+#             */
-/*   Updated: 2023/05/31 15:43:50 by mjuin            ###   ########.fr       */
+/*   Updated: 2023/06/02 14:17:27 by mjuin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef INTERN_CPP
 #define INTERN_CPP
 
-#include "AForm.hpp"
 #include "PresidentialPardonForm.hpp"
 #include "RobotomyRequestForm.hpp"
 #include "ShrubberyCreationForm.hpp"
