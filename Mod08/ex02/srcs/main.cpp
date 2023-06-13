@@ -6,14 +6,78 @@
 /*   By: mjuin <mjuin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 11:10:30 by mjuin             #+#    #+#             */
-/*   Updated: 2023/06/12 16:08:45 by mjuin            ###   ########.fr       */
+/*   Updated: 2023/06/13 13:28:51 by mjuin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
 #include "MutantStack.hpp"
 
-int main()
+void trymstackBase()
+{
+
+	std::cout << "#     MStack Base     #\n\n";
+	MutantStack<int>	mstack;
+	std::cout << "MStack Size = " << mstack.size() << " so MStack is empty ? " << std::boolalpha << mstack.empty() << std::endl;
+	mstack.push(5);
+	std::cout << "MStack add " << mstack.top() << std::endl;
+	mstack.push(15);
+	std::cout << "MStack add " << mstack.top() << std::endl;
+	std::cout << "MStack Size = " << mstack.size() << " so MStack is empty ? " << std::boolalpha << mstack.empty() << std::endl;
+	mstack.pop();
+	std::cout << "MStack pop " << std::endl;
+	std::cout << "MStack Size = " << mstack.size() << " so MStack is empty ? " << std::boolalpha << mstack.empty() << std::endl;
+}
+
+void trymstackIterator()
+{
+	std::cout << "\n#     MStack Iterator     #\n\n";
+	MutantStack<int> mstack;
+	std::cout << "MStack Size = " << mstack.size() << std::endl;
+	std::cout << "MStack values : " << std::endl;
+	MutantStack<int>::iterator it2 = mstack.end();
+	for (MutantStack<int>::iterator it = mstack.begin(); it < it2; it++)
+	{
+		std::cout << *it << std::endl;
+	}
+	mstack.push(5);
+	std::cout << "MStack add " << mstack.top() << std::endl;
+	mstack.push(15);
+	std::cout << "MStack add " << mstack.top() << std::endl;
+	mstack.push(-2);
+	std::cout << "MStack add " << mstack.top() << std::endl;
+	mstack.push(50);
+	std::cout << "MStack add " << mstack.top() << std::endl;
+	mstack.push(25);
+	std::cout << "MStack add " << mstack.top() << std::endl;
+	mstack.push(17);
+	std::cout << "MStack add " << mstack.top() << std::endl;
+	it2 = mstack.end();
+	std::cout << "MStack Size = " << mstack.size() << std::endl;
+	std::cout << "MStack values : " << std::endl;
+	for (MutantStack<int>::iterator it = mstack.begin(); it < it2; it++)
+	{
+		std::cout << *it << std::endl;
+	}
+}
+
+void trystackBase()
+{
+
+	std::cout << "\n#     Stack Base     #\n\n";
+	std::stack<int>	mstack;
+	std::cout << "Stack Size = " << mstack.size() << " so Stack is empty ? " << std::boolalpha << mstack.empty() << std::endl;
+	mstack.push(5);
+	std::cout << "Stack add " << mstack.top() << std::endl;
+	mstack.push(15);
+	std::cout << "Stack add " << mstack.top() << std::endl;
+	std::cout << "Stack Size = " << mstack.size() << " so Stack is empty ? " << std::boolalpha << mstack.empty() << std::endl;
+	mstack.pop();
+	std::cout << "Stack pop " << std::endl;
+	std::cout << "Stack Size = " << mstack.size() << " so Stack is empty ? " << std::boolalpha << mstack.empty() << std::endl;
+}
+
+void trysubject()
 {
 	MutantStack<int> mstack;
 	mstack.push(5);
@@ -35,8 +99,8 @@ int main()
 		std::cout << *it << std::endl;
 		++it;
 	}
-	MutantStack<int>::iterator it = mstack.begin();
-	MutantStack<int>::iterator ite = mstack.end();
+	it = mstack.begin();
+	ite = mstack.end();
 	++it;
 	--it;
 	while (it != ite)
@@ -45,5 +109,35 @@ int main()
 		++it;
 	}
 	std::stack<int> s(mstack);
-	return 0;
+	return ;
+}
+
+void trymstackdeep()
+{
+
+	std::cout << "\n#     Stack copy     #\n\n";
+	std::stack<int>	mstack;
+	std::cout << "Stack1 Size = " << mstack.size() << " so Stack1 is empty ? " << std::boolalpha << mstack.empty() << std::endl;
+	mstack.push(5);
+	std::cout << "Stack1 add " << mstack.top() << std::endl;
+	mstack.push(15);
+	std::cout << "Stack1 add " << mstack.top() << std::endl;
+	std::cout << "Stack1 Size = " << mstack.size() << " so Stack1 is empty ? " << std::boolalpha << mstack.empty() << std::endl;
+	mstack.pop();
+	std::cout << "Stack1 pop " << std::endl;
+	std::cout << "Stack1 Size = " << mstack.size() << " so Stack1 is empty ? " << std::boolalpha << mstack.empty() << std::endl;
+	std::stack<int>	mstack2(mstack);
+	std::cout << "Stack2 Size = " << mstack2.size() << " so Stack2 is empty ? " << std::boolalpha << mstack2.empty() << std::endl;
+	mstack.pop();
+	std::cout << "Stack1 pop " << std::endl;
+	std::cout << "Stack1 Size = " << mstack.size() << " so Stack1 is empty ? " << std::boolalpha << mstack.empty() << std::endl;
+	std::cout << "Stack2 Size = " << mstack2.size() << " so Stack2 is empty ? " << std::boolalpha << mstack2.empty() << std::endl;
+}
+
+int main()
+{
+	trymstackBase();
+	trymstackIterator();
+	trystackBase();
+	trymstackdeep();
 }

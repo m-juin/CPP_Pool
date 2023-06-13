@@ -6,7 +6,7 @@
 #    By: mjuin <mjuin@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/15 15:23:54 by mjuin             #+#    #+#              #
-#    Updated: 2023/06/05 11:45:19 by mjuin            ###   ########.fr        #
+#    Updated: 2023/06/13 13:29:28 by mjuin            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ CC =	c++
 
 CFLAGS =	-g -Werror -Wextra -Wall -std=c++98 -I./includes
 
-NAME =	ex00
+NAME =	easyfind
 
 SRC =	srcs/main.cpp
 
