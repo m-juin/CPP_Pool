@@ -6,7 +6,7 @@
 /*   By: mjuin <mjuin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 09:47:12 by mjuin             #+#    #+#             */
-/*   Updated: 2023/06/14 16:19:16 by mjuin            ###   ########.fr       */
+/*   Updated: 2023/06/15 14:48:53 by mjuin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,15 +30,34 @@ public:
 		bool operator<(const st_time &other) const;
 		bool operator<=(const st_time &other) const;
 	};
+	BitcoinExchange();
 	BitcoinExchange(std::string path);
 	BitcoinExchange(const BitcoinExchange &src);
 	~BitcoinExchange();
 	BitcoinExchange &operator=(const BitcoinExchange &);
 	float getValue(st_time date, float quantity);
-
+	BitcoinExchange::st_time getdatevalue(std::string value);
+	std::string	Exchange(std::string line);
+	class InvalidDateFormatException : public std::exception
+	{
+		public:
+			const char *what() const throw();
+	};
+	class InvalidDateException : public std::exception
+	{
+		public:
+			const char *what() const throw();
+	};
+	class InvalidFileFormat : public std::exception
+	{
+		public:
+			const char *what() const throw();
+	};
+		
 private:
-	BitcoinExchange();
 	std::map<st_time, float> _bitcoinValues;
 };
+
+	std::ostream	&operator<<(std::ostream& os, const BitcoinExchange::st_time& time);
 
 #endif

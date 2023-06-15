@@ -6,7 +6,7 @@
 /*   By: mjuin <mjuin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 09:57:48 by mjuin             #+#    #+#             */
-/*   Updated: 2023/06/14 16:18:19 by mjuin            ###   ########.fr       */
+/*   Updated: 2023/06/15 15:24:15 by mjuin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,15 +49,48 @@ bool checkFileValidity(int ac, char **av)
 	return (true);
 }
 
+void readFile(std::string filepath, BitcoinExchange btc)
+{
+	std::ifstream file(filepath.c_str());
+	std::string line;
+	int count = 0;
+	while (std::getline(file, line))
+	{
+		if (count++ == 0)
+		{
+			if (line != "date | value")
+			{
+				std::cerr << "Error: Bad file format => " << line << std::endl;
+				return ;
+			}
+			continue;
+		}
+		try
+		{
+			std::string value = btc.Exchange(line);
+			std::cout << value << std::endl;
+		}
+		catch(const std::exception& e)
+		{
+			std::cerr << e.what() << '\n';
+		}
+	}
+	
+}
+
 int main( int ac, char **av ) 
 {
 	if (checkFileValidity(ac, av) == false)
 		return 1;
-	std::string alpha(av[1]);
-	BitcoinExchange btc(alpha);
-	BitcoinExchange::st_time newt;
-	newt.year = 2021;
-	newt.month = 5;
-	newt.day = 21;
-	std::cout << "2147483647 bitcoin at the date " << newt.year << "-" << newt.month << "-" << newt.day << " are valuated at " << btc.getValue(newt, 2147483647) << std::endl;
+	BitcoinExchange btc;
+	try
+	{
+		btc = (BitcoinExchange("Data/data.csv"));
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << '\n';
+		return 1;
+	}
+	readFile(av[1], btc);
 }
