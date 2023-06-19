@@ -64,8 +64,8 @@ void ScalarConverter::convert(std::string src)
 		{
 			char	base = src[0];
 
-			std::cout << "Float = " << static_cast<float>(base) << std::fixed << 'f' << std::endl;
-			std::cout << "Double = " << static_cast<double>(base) << std::fixed << std::endl;
+			std::cout << "Float = " << std::fixed << static_cast<float>(base) << 'f' << std::endl;
+			std::cout << "Double = " << std::fixed << static_cast<double>(base) << std::endl;
 			std::cout << "Int = " << static_cast<int>(base) << std::endl;
 			if (base > 31 && base < 127)
 				std::cout << "(Base)Char = '" << base << "'" << std::endl;
