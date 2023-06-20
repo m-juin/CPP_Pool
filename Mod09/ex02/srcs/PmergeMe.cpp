@@ -5,129 +5,113 @@ PmergeMe::PmergeMe()
 
 }
 
+void PmergeMe::InsertSort(std::deque<unsigned int> *dequeB)
+{
+	std::deque<unsigned int>::iterator it2 = (*dequeB).end();
+	
+	for (size_t i = 0; i < _deque.size() - 1; i += 2)
+	{
+		std::deque<unsigned int>::iterator it = (*dequeB).begin();
+		while (it != it2 && *it > _deque[i])
+		{
+			it++;
+		}
+		(*dequeB).insert(it, _deque[i]);
+	}
+}
+
+void PmergeMe::RecursiveSort(std::deque<unsigned int> *dequeB, int size)
+{
+	if (size < 2)
+		return ;
+	RecursiveSort(dequeB, size - 1);
+	unsigned int nl = (*dequeB)[size - 1];
+	unsigned int nl1;
+	for (nl1 = size - 2; nl1 != 0 && (*dequeB)[nl1] <= nl; nl1--)
+	{
+		(*dequeB)[nl1 + 1] = (*dequeB)[nl1];
+	}
+	(*dequeB)[nl1 + 1] = nl;
+}
+
 float PmergeMe::sortDeque()
 {
 	clock_t startTV = clock();
-	std::deque<unsigned int> dequeA;
 	std::deque<unsigned int> dequeB;	
 	int						last = -1;
 
-	for (size_t i = 0; i < _deque.size(); i++)
+	if (_deque.size() % 2 != 0)
+		last = _deque[_deque.size() - 1];
+	for (size_t i = 0; i < _deque.size(); i += 2)
 	{
-		if (_deque.size() % 2 != 0 && i == _deque.size() - 1)
-			last = _deque[i];
-		else if (i % 2 == 0)
-		{
-			dequeA.push_back(_deque[i]);
-		}
-		else
-			dequeB.push_back(_deque[i]);
+		if (_deque[i] > _deque[i + 1])
+			std::swap(_deque[i], _deque[i + 1]);
 	}
-	for (size_t i = 0; i < dequeA.size(); i++)
+	for (size_t i = 1; i < _deque.size(); i += 2)
 	{
-		int tmp;
-		if (dequeA[i] > dequeB[i])
-		{
-			tmp = dequeB[i];
-			dequeB[i] = dequeA[i];
-			dequeA[i] = tmp;
-		}
-	}
-	for (size_t i = 1; i < dequeA.size(); i++)
-	{
-		if (dequeA[i] < dequeA[i - 1])
-		{
-			int tmp = dequeA[i - 1];
-			dequeA[i - 1] = dequeA[i];
-			dequeA[i] = tmp;
-			tmp = dequeB[i - 1];
-			dequeB[i - 1] = dequeB[i];
-			dequeB[i] = tmp;
-			i = 0;
-		}
+		dequeB.push_back(_deque[i]);
 	}
 	if (last != -1)
 		dequeB.push_back(last);
-	for (size_t i = 0; i < dequeB.size(); i++)
-	{
-		std::deque<unsigned int>::iterator it2 = dequeA.end();
-		bool inserted = false;
-		for (std::deque<unsigned int>::iterator it = dequeA.begin(); it != it2; it++)
-		{
-			if (dequeB[i] <= *it)
-			{
-				dequeA.insert(it, dequeB[i]);
-				inserted = true;
-				break;
-			}
-		}
-		if (inserted == false)
-			dequeA.insert(it2, dequeB[i]);
-	}
-	_deque = dequeA;
+	RecursiveSort(&dequeB, dequeB.size());
+	InsertSort(&dequeB);
+	std::reverse(dequeB.begin(), dequeB.end());
+	_deque = dequeB;
 	return ((float)(clock() - startTV)/CLOCKS_PER_SEC);
+}
+
+void PmergeMe::InsertSort(std::vector<unsigned int> *vectorB)
+{
+	std::vector<unsigned int>::iterator it2 = (*vectorB).end();
+	
+	for (size_t i = 0; i < _vector.size() - 1; i += 2)
+	{
+		std::vector<unsigned int>::iterator it = (*vectorB).begin();
+		while (it != it2 && (*it) > _vector[i])
+		{
+			it++;
+		}
+		(*vectorB).insert(it, _vector[i]);
+	}
+}
+
+void PmergeMe::RecursiveSort(std::vector<unsigned int> *vectorB, int size)
+{
+	if (size < 2)
+		return ;
+	RecursiveSort(vectorB, size - 1);
+	unsigned int nl = (*vectorB)[size - 1];
+	unsigned int nl1;
+	for (nl1 = size - 2; nl1 != 0 && (*vectorB)[nl1] <= nl; nl1--)
+	{
+		(*vectorB)[nl1 + 1] = (*vectorB)[nl1];
+	}
+	(*vectorB)[nl1 + 1] = nl;
 }
 
 float PmergeMe::sortVector()
 {
 	clock_t startTV = clock();
-	std::vector<unsigned int> vectorA;
 	std::vector<unsigned int> vectorB;	
 	int						last = -1;
 
-	for (size_t i = 0; i < _vector.size(); i++)
+	if (_vector.size() % 2 != 0)
+		last = _vector[_vector.size() - 1];
+	for (size_t i = 0; i < _vector.size(); i += 2)
 	{
-		if (_vector.size() % 2 != 0 && i == _vector.size() - 1)
-			last = _vector[i];
-		else if (i % 2 == 0)
-		{
-			vectorA.push_back(_vector[i]);
-		}
-		else
-			vectorB.push_back(_vector[i]);
+		if (_vector[i] > _vector[i + 1])
+			std::swap(_vector[i], _vector[i + 1]);
 	}
-	for (size_t i = 0; i < vectorA.size(); i++)
+	for (size_t i = 1; i < _vector.size(); i += 2)
 	{
-		int tmp;
-		if (vectorA[i] > vectorB[i])
-		{
-			tmp = vectorB[i];
-			vectorB[i] = vectorA[i];
-			vectorA[i] = tmp;
-		}
-	}
-	for (size_t i = 1; i < vectorA.size(); i++)
-	{
-		if (vectorA[i] < vectorA[i - 1])
-		{
-			int tmp = vectorA[i - 1];
-			vectorA[i - 1] = vectorA[i];
-			vectorA[i] = tmp;
-			tmp = vectorB[i - 1];
-			vectorB[i - 1] = vectorB[i];
-			vectorB[i] = tmp;
-			i = 0;
-		}
+		vectorB.push_back(_vector[i]);
 	}
 	if (last != -1)
 		vectorB.push_back(last);
-	for (size_t i = 0; i < vectorB.size(); i++)
-	{
-		std::vector<unsigned int>::iterator it2 = vectorA.end();
-		bool inserted = false;
-		for (std::vector<unsigned int>::iterator it = vectorA.begin(); it != it2; it++)
-		{
-			if (vectorB[i] <= *it)
-			{
-				vectorA.insert(it, vectorB[i]);
-				inserted = true;
-				break;
-			}
-		}
-		if (inserted == false)
-			vectorA.insert(it2, vectorB[i]);
-	}
-	_vector = vectorA;
+	RecursiveSort(&vectorB, vectorB.size());
+	InsertSort(&vectorB);
+	std::reverse(vectorB.begin(), vectorB.end());
+	_vector = vectorB;
 	return ((float)(clock() - startTV)/CLOCKS_PER_SEC);
 }
 
@@ -159,11 +143,11 @@ PmergeMe::PmergeMe(int arg_count, char **av)
 		_vector.push_back(atoied);
 	}
 	printValue("Before =");
+	float t_vector = sortVector();
 	float t_deque = sortDeque();
 	printValue("After =");
-	float t_vector = sortVector();
-	std::cout << "time for std::deque to sort " << _deque.size() << " elements  = " << std::fixed << t_deque << " s" << std::endl;
-	std::cout << "time for std::vector to sort " << _deque.size() << " elements  = " << std::fixed << t_vector << " s" << std::endl;
+	std::cout << "Time to process a range of " << _deque.size() << " elements with std::deque : " << std::fixed << t_deque << " s\n";
+	std::cout << "Time to process a range of " << _vector.size() << " elements with std::vector : " << std::fixed << t_vector << " s\n";
 }
 
 PmergeMe::PmergeMe(const PmergeMe &src)
