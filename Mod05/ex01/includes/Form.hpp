@@ -6,7 +6,7 @@
 /*   By: mjuin <mjuin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 13:15:29 by mjuin             #+#    #+#             */
-/*   Updated: 2023/06/02 14:15:52 by mjuin            ###   ########.fr       */
+/*   Updated: 2023/06/21 13:38:50 by mjuin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,11 @@ class Form
 				const char *what() const throw();
 		};
 		class GradeTooLowException : public std::exception
+		{
+			public:
+				const char *what() const throw();
+		};
+		class AlreadySignedException : public std::exception
 		{
 			public:
 				const char *what() const throw();
