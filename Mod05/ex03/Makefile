@@ -6,7 +6,7 @@
 #    By: mjuin <mjuin@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/15 15:23:54 by mjuin             #+#    #+#              #
-#    Updated: 2023/05/31 13:54:23 by mjuin            ###   ########.fr        #
+#    Updated: 2023/06/22 09:21:45 by mjuin            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ CC =	c++
 
 CFLAGS =	-g -Werror -Wextra -Wall -std=c++98 -I./includes
 
-NAME =	ex02
+NAME =	ex03
 
 SRC =	srcs/Bureaucrat.cpp				\
 		srcs/AForm.cpp					\
