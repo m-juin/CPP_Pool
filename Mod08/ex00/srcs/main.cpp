@@ -6,7 +6,7 @@
 /*   By: mjuin <mjuin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 09:57:48 by mjuin             #+#    #+#             */
-/*   Updated: 2023/06/07 12:40:43 by mjuin            ###   ########.fr       */
+/*   Updated: 2023/07/06 11:30:21 by mjuin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,11 @@ void TryListBase(int searched)
 		std::cout << "list[" << i << "] = " << *it << std::endl;
 		advance(it, 1);
 	}
-	easyfind(list, searched);
+	it = easyfind(list, searched);
+	if (it != list.end())
+		std::cout << searched << " found" << std::endl;
+	else
+		std::cout << searched << " not found" << std::endl;
 }
 
 void TryListDouble(int searched)
@@ -47,7 +51,11 @@ void TryListDouble(int searched)
 		std::cout << "list[" << i << "] = " << *it << std::endl;
 		advance(it, 1);
 	}
-	easyfind(list, searched);
+	it = easyfind(list, searched);
+	if (it == list.end())
+		std::cout << searched << " not found" << std::endl;
+	else
+		std::cout << searched << " found" << std::endl;
 }
 
 void TryListInvalid(int searched)
@@ -58,20 +66,28 @@ void TryListInvalid(int searched)
 		list.push_back(i);
 	}
 	std::list<int>::iterator it = list.begin();
-	std :: cout << "\n#     List     #\n\n";
+	std :: cout << "\n#     List Invalid     #\n\n";
 	for (size_t i = 0; i < 100; i++)
 	{
 		std::cout << "list[" << i << "] = " << *it << std::endl;
 		advance(it, 1);
 	}
-	easyfind(list, searched);
+	it = easyfind(list, searched);
+	if (it == list.end())
+		std::cout << searched << " not found" << std::endl;
+	else
+		std::cout << searched << " found" << std::endl;
 }
 
 void TryListEmpty(int searched)
 {
 	std::list<int> list;
 	std :: cout << "\n#     ListEmpty     #\n\n";
-	easyfind(list, searched);
+	std::list<int>::iterator it = easyfind(list, searched);
+	if (it != list.end())
+		std::cout << searched << " found" << std::endl;
+	else
+		std::cout << searched << " not found" << std::endl;
 }
 
 void TryVectorBase(int searched)
@@ -88,7 +104,11 @@ void TryVectorBase(int searched)
 		std::cout << "Vector[" << i << "] = " << *it << std::endl;
 		advance(it, 1);
 	}
-	easyfind(Vector, searched);
+	it = easyfind(Vector, searched);
+	if (it != Vector.end())
+		std::cout << searched << " found" << std::endl;
+	else
+		std::cout << searched << " not found" << std::endl;
 }
 
 void TryVectorDouble(int searched)
@@ -106,7 +126,11 @@ void TryVectorDouble(int searched)
 		std::cout << "Vector[" << i << "] = " << *it << std::endl;
 		advance(it, 1);
 	}
-	easyfind(Vector, searched);
+	it = easyfind(Vector, searched);
+	if (it != Vector.end())
+		std::cout << searched << " found" << std::endl;
+	else
+		std::cout << searched << " not found" << std::endl;
 }
 
 void TryVectorInvalid(int searched)
@@ -123,14 +147,22 @@ void TryVectorInvalid(int searched)
 		std::cout << "Vector[" << i << "] = " << *it << std::endl;
 		advance(it, 1);
 	}
-	easyfind(Vector, searched);
+	it = easyfind(Vector, searched);
+	if (it != Vector.end())
+		std::cout << searched << " found" << std::endl;
+	else
+		std::cout << searched << " not found" << std::endl;
 }
 
 void TryVectorEmpty(int searched)
 {
 	std::vector<int> Vector;
 	std :: cout << "\n#     VectorEmpty     #\n\n";
-	easyfind(Vector, searched);
+	std::vector<int>::iterator it = easyfind(Vector, searched);
+	if (it != Vector.end())
+		std::cout << searched << " found" << std::endl;
+	else
+		std::cout << searched << " not found" << std::endl;
 }
 
 int main( void ) 

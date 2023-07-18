@@ -6,7 +6,7 @@
 /*   By: mjuin <mjuin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 09:48:11 by mjuin             #+#    #+#             */
-/*   Updated: 2023/06/05 15:15:13 by mjuin            ###   ########.fr       */
+/*   Updated: 2023/07/03 16:07:59 by mjuin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ class Array
 		Array &operator=(const Array&);
 		~Array<T>();
 		T &operator[](size_t index);
+		const T &operator[](size_t index) const;
 		unsigned int size( void );
 		class InvalidIndexException : public std::exception
 		{

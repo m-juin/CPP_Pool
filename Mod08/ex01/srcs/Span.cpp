@@ -99,12 +99,10 @@ void Span::addRange(size_t amount)
 	while (it != it_end)
 	{
 		if (_list.size() == _max)
-			throw TooFewNumberException();
+			throw TooMuchNumberException();
 		_list.push_back(rand());
 		it++;
 	}
-	
-	//std::for_each(_list.end(), it, _list.push_back(rand()));
 }
 
 const char *Span::TooMuchNumberException::what() const throw()

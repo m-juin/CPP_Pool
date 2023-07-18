@@ -6,7 +6,7 @@
 /*   By: mjuin <mjuin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 11:36:24 by mjuin             #+#    #+#             */
-/*   Updated: 2023/06/02 14:11:59 by mjuin            ###   ########.fr       */
+/*   Updated: 2023/06/29 10:25:38 by mjuin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,13 +35,15 @@ Base * generate(void)
 
 void identify(Base* p)
 {
-	char	type;
+	std::string	type;
 	if (dynamic_cast<A*>(p) != NULL)
 		type = 'A';
 	else if (dynamic_cast<B*>(p) != NULL)
 		type = 'B';
 	else if (dynamic_cast<C*>(p) != NULL)
 		type = 'C';
+	else
+		type = "NULL";
 	std::cout << "Class type (Identified by pointer) = " << type << std::endl;
 }
 
@@ -79,5 +81,6 @@ int main( void )
 	Base *generated = generate();
 	identify(generated);
 	identify(*generated);
+	identify(NULL);
 	delete(generated);
 }

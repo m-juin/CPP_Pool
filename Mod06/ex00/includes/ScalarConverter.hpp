@@ -6,7 +6,7 @@
 /*   By: mjuin <mjuin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 10:53:49 by mjuin             #+#    #+#             */
-/*   Updated: 2023/06/02 14:14:01 by mjuin            ###   ########.fr       */
+/*   Updated: 2023/06/29 10:19:21 by mjuin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,11 @@ class ScalarConverter
 {
 	public:
 		static void convert(std::string src);
+		~ScalarConverter();
 	private:
+		ScalarConverter();
+		ScalarConverter(const ScalarConverter &src);
+		ScalarConverter &operator=(const ScalarConverter &src);
 		static e_type getType(std::string src);
 		static bool isFloat(std::string src);
 		static bool isInt(std::string src);

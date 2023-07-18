@@ -6,7 +6,7 @@
 /*   By: mjuin <mjuin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 10:22:45 by mjuin             #+#    #+#             */
-/*   Updated: 2023/06/12 15:04:21 by mjuin            ###   ########.fr       */
+/*   Updated: 2023/07/14 09:37:30 by mjuin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,32 +15,32 @@
 
 #include <stack>
 
-template<class T> 
+template<class T>
 class MutantStack : public std::stack<T>
 {
 	private:
 	public:
-		MutantStack() { };
-		MutantStack(const MutantStack &src)
+		typedef typename std::stack<T>::container_type::iterator iterator;
+		MutantStack() : std::stack<T>() { };
+		MutantStack(const MutantStack &src) : std::stack<T>()
 		{
 			*this = src;
 		}
-		MutantStack operator=(const MutantStack &src)
+		MutantStack &operator=(const MutantStack &src)
 		{
 			if (this == &src)
-				return *this;
-			return (*this);
+				return (*this);
+			this->c = src.c;
+			return *this;
 		}
 		~MutantStack() { };
-
-		typedef typename std::stack<T>::container_type::iterator iterator;
 		iterator begin()
 		{
-			return (std::stack<T>::c.begin());
+			return (this->c.begin());
 		}
 		iterator end()
 		{
-			return (std::stack<T>::c.end());
+			return (this->c.end());
 		}
 };
 

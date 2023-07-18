@@ -6,7 +6,7 @@
 /*   By: mjuin <mjuin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 11:48:52 by mjuin             #+#    #+#             */
-/*   Updated: 2023/06/05 15:17:49 by mjuin            ###   ########.fr       */
+/*   Updated: 2023/07/03 16:05:11 by mjuin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,9 @@ Array<T>::Array( unsigned int n)
 {
 	_array = new T[n];
 	_size = n;
-	for (size_t i = 0; i < n; i++)
+	if (n != 0)
+		_array[0] = n;
+	for (size_t i = 1; i < n; i++)
 	{
 		this->_array[i] = 0;
 	}
@@ -63,6 +65,14 @@ Array<T>::~Array( void )
 
 template <typename T>
 T &Array<T>::operator[](size_t index)
+{
+	if (index >= _size)
+		throw Array::InvalidIndexException();
+	return (this->_array[index]);
+}
+
+template <typename T>
+const T &Array<T>::operator[](size_t index) const
 {
 	if (index >= _size)
 		throw Array::InvalidIndexException();

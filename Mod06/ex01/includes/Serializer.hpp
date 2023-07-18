@@ -6,7 +6,7 @@
 /*   By: mjuin <mjuin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 12:24:17 by mjuin             #+#    #+#             */
-/*   Updated: 2023/06/02 12:45:06 by mjuin            ###   ########.fr       */
+/*   Updated: 2023/06/29 10:52:28 by mjuin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #define SERIALIZER_HPP
 
 #include  <stdint.h>
-#include "iostream"
+#include <iostream>
 
 struct Data
 {
@@ -24,15 +24,12 @@ struct Data
 
 class Serializer
 {
-	public:
+	private:
 		Serializer();
-		Serializer(const Serializer&src);
+	public:
 		~Serializer();
-		Serializer &operator=(const Serializer&);
 		static uintptr_t serialize(Data* ptr);
 		static Data* deserialize(uintptr_t raw);
-	private:
-		
 };
 
 #endif

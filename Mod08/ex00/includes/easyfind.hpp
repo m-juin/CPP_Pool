@@ -6,7 +6,7 @@
 /*   By: mjuin <mjuin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 09:48:11 by mjuin             #+#    #+#             */
-/*   Updated: 2023/06/07 12:17:27 by mjuin            ###   ########.fr       */
+/*   Updated: 2023/07/06 11:32:42 by mjuin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,17 @@
 # define EASYFIND_HPP
 
 #include <iostream>
+#include <algorithm>
 
 template <typename T>
-void	easyfind(T container, int searched)
+typename T::iterator easyfind(T &container, int searched)
 {
-	int index = 0;
-
-	for (typename T::iterator it = container.begin(); it != container.end(); ++it)
+	typename T::iterator find = container.end();
+	find = std::find(container.begin(), container.end(), searched);
+	if (find == container.end())
 	{
-		const int& element = static_cast<int&>(*it);
-		if (element == searched)
-		{
-			std::cout << "First occurence of int " << searched << " found at index " << index << std::endl;
-			return ;
-		}
-		index++;
+		return container.end();
 	}
-	std::cerr << "int " << searched << " not found !" << std::endl;
+	return find;
 }
 #endif

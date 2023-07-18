@@ -16,9 +16,44 @@ BitcoinExchange::BitcoinExchange(std::string path)
 	while (std::getline(file, line))
 	{
 		if (count++ == 0)
+		{
+			if (line != "date,exchange_rate")
+			{
+				std::string ret = ("Error: Invalid first data line format => " + line);
+				throw std::runtime_error(ret);
+			}
 			continue;
+		}
 		st_time date;
-		int index = line.find(',');
+		long unsigned int index = line.find(',');
+		if (index == line.npos)
+		{
+			std::string ret = ("Error: No , present in data line => " + line);
+			throw std::runtime_error(ret);
+		}
+		long unsigned int pos = index + 1;
+		int dot = 0;
+		while (line[pos] != '\0')
+		{
+			if (line[pos] == '.' && dot != 0)
+			{
+				std::string ret = ("Error: Double . in data line => " + line);
+				throw std::runtime_error(ret);
+			}
+			else if (line[pos] == '.')
+				dot++;
+			else if (std::isdigit(line[pos]) == false)
+			{
+				std::string ret = ("Error: non digit char in data line => " + line);
+				throw std::runtime_error(ret);
+			}
+			pos++;
+		}
+		if (pos == index + 1)
+		{
+			std::string ret = ("Error: no value in data line => " + line);
+			throw std::runtime_error(ret);
+		}
 		date = getdatevalue(line.substr(0, index));
 		if (date.day == -1)
 			throw BitcoinExchange::InvalidDateFormatException();
@@ -29,18 +64,18 @@ BitcoinExchange::BitcoinExchange(std::string path)
 		{
 			value = std::strtof(line.substr(index + 1, line.npos).c_str(), NULL);
 		}
-		catch(const std::exception& e)
+		catch (const std::exception &e)
 		{
 			if (errno == ERANGE)
 			{
-				std::cerr << "conversion of value \"" << line.substr(index + 1, line.npos) << "\" may cause an overflow or an underflow !" << '\n';
+				std::cerr << "conversion of value \"" << line.substr(index + 1, line.npos) << "\" of data may cause an overflow or an underflow !" << '\n';
 			}
 		}
-		this->_bitcoinValues.insert(std::make_pair<st_time, float>(date, value));
+		_bitcoinValues[date] = value;
 	}
 }
 
-float	BitcoinExchange::getValue(st_time date, float quantity)
+float BitcoinExchange::getValue(st_time date, float quantity)
 {
 	std::map<st_time, float>::iterator it2 = this->_bitcoinValues.end();
 	for (std::map<st_time, float>::iterator it = this->_bitcoinValues.begin(); it != it2; it++)
@@ -58,17 +93,17 @@ float	BitcoinExchange::getValue(st_time date, float quantity)
 BitcoinExchange::st_time BitcoinExchange::getdatevalue(std::string value)
 {
 	BitcoinExchange::st_time ltm;
-	int index = value.find_first_of('-', 0);
-	if (index != 4 || value[index + 3] != '-' || value[index + 6] != '\0')
+	if (std::isdigit(value[0]) == false || std::isdigit(value[1]) == false || std::isdigit(value[2]) == false || std::isdigit(value[3]) == false || value[4] != '-' || std::isdigit(value[5]) == false || std::isdigit(value[6]) == false || value[7] != '-' || std::isdigit(value[8]) == false || std::isdigit(value[9]) == false || value[10] != '\0')
 	{
 		ltm.day = -1;
 		return (ltm);
 	}
+	int index = value.find_first_of('-', 0);
 	ltm.year = std::atoi(value.substr(0, index).c_str());
 	ltm.month = std::atoi(value.substr(index + 1, index + 3).c_str());
 	ltm.day = std::atoi(value.substr(index + 4, index + 6).c_str());
 	if (ltm.month > 12 || ((ltm.month == 1 || ltm.month == 3 || ltm.month == 5 || ltm.month == 7 || ltm.month == 8 || ltm.month == 10 || ltm.month == 12) && ltm.day > 31) ||
-	((ltm.month == 2 || ltm.month == 4 || ltm.month == 6 || ltm.month == 9 || ltm.month == 11) && ltm.day > 30))
+		((ltm.month == 2 || ltm.month == 4 || ltm.month == 6 || ltm.month == 9 || ltm.month == 11) && ltm.day > 30))
 	{
 		ltm.day = -2;
 		return (ltm);
@@ -89,6 +124,45 @@ std::string BitcoinExchange::Exchange(std::string line)
 	if (sep == line.npos)
 	{
 		ret = ("Error: Invalid line format => " + line);
+		throw std::runtime_error(ret);
+	}
+	long unsigned int pos = sep + 3;
+	int dot = 0;
+
+	while (line[pos] != '\0')
+	{
+		if (line[pos] == '.' && dot != 0)
+		{
+			std::string ret = ("Error: Double . in line => " + line);
+			throw std::runtime_error(ret);
+		}
+		else if (line[pos] == '.')
+			dot++;
+		else if ((line[pos] == '-' || line[pos] == '+') && pos != sep + 3)
+		{
+			std::string ret = ("Error: non digit char in line => " + line);
+			throw std::runtime_error(ret);
+		}
+		else if (line[pos] == '-' || line[pos] == '+')
+		{
+			pos++;
+			continue;
+		}
+		else if (std::isdigit(line[pos]) == false)
+		{
+			std::string ret = ("Error: non digit char in line => " + line);
+			throw std::runtime_error(ret);
+		}
+		pos++;
+	}
+	if (pos == sep + 3)
+	{
+		std::string ret = ("Error: no value in line => " + line);
+		throw std::runtime_error(ret);
+	}
+	else if (pos == sep + 4 && (line[pos - 1] == '-' || line[pos - 1] == '+'))
+	{
+		std::string ret = ("Error: no value in line => " + line);
 		throw std::runtime_error(ret);
 	}
 	str_date = line.substr(0, sep);

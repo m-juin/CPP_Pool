@@ -6,7 +6,7 @@
 /*   By: mjuin <mjuin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 09:57:48 by mjuin             #+#    #+#             */
-/*   Updated: 2023/06/08 16:00:15 by mjuin            ###   ########.fr       */
+/*   Updated: 2023/07/06 11:49:18 by mjuin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,6 +109,26 @@ void tryShortOverflow()
 	}
 }
 
+void tryShortDouble()
+{
+	std::cout << "#     tryshortDouble     #\n" << std::endl;
+	Span test(5);
+	try
+	{
+		test.addNumber(100);
+		test.addNumber(50);
+		test.addNumber(20);
+		test.addNumber(5);
+		test.addNumber(5);
+		test.displaySpan();
+		std::cout << "\nShortest Span = " << test.shortestSpan() << std::endl;
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << '\n' << '\n';
+	}
+}
+
 void tryLongBase()
 {
 	std::cout << "#     tryLongBase     #\n" << std::endl;
@@ -162,6 +182,26 @@ void tryLongOverflow()
 	}
 }
 
+void tryLongDouble()
+{
+	std::cout << "#     tryLongDouble     #\n" << std::endl;
+	Span test(5);
+	try
+	{
+		test.addNumber(5);
+		test.addNumber(5);
+		test.addNumber(20);
+		test.addNumber(50);
+		test.addNumber(50);
+		test.displaySpan();
+		std::cout << "\nLongest Span = " << test.longestSpan() << std::endl;
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << '\n' << '\n';
+	}
+}
+
 void tryaddRange()
 {
 	std::cout << "#     tryaddRange     #\n" << std::endl;
@@ -180,6 +220,22 @@ void tryaddRange()
 	}
 }
 
+void tryTooMuchRange()
+{
+	std::cout << "#     tryTooMuchRange     #\n" << std::endl;
+	Span test(200);
+	try
+	{
+		test.addRange(20000);
+		test.displaySpan();
+		std::cout << "\n\nLongest Span = " << test.longestSpan() << std::endl;
+		std::cout << "\nShortest Span = " << test.shortestSpan() << std::endl;
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << '\n' << '\n';
+	}
+}
 
 int main( void ) 
 {
@@ -188,9 +244,13 @@ int main( void )
 	tryShortBase();
 	tryShortTooSmall();
 	tryShortOverflow();
+	tryShortDouble();
 	tryLongBase();
 	tryLongTooSmall();
 	tryLongOverflow();
+	tryLongDouble();
 	srand(time(NULL));
 	tryaddRange();
+
+	//tryTooMuchRange();
 }

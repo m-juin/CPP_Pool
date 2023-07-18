@@ -1,5 +1,25 @@
 #include <ScalarConverter.hpp>
 
+ScalarConverter::ScalarConverter()
+{
+}
+
+ScalarConverter::ScalarConverter(const ScalarConverter &src)
+{
+	*this = src;
+}
+
+ScalarConverter::~ScalarConverter()
+{
+}
+
+ScalarConverter &ScalarConverter::operator=(const ScalarConverter &src)
+{
+	if (&src == this)
+		return (*this);
+	return (*this);
+}
+
 void ScalarConverter::convert(std::string src)
 {
 	e_type type;
