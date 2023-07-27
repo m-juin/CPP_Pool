@@ -6,7 +6,7 @@
 /*   By: mjuin <mjuin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 10:29:31 by mjuin             #+#    #+#             */
-/*   Updated: 2023/06/20 15:19:37 by mjuin            ###   ########.fr       */
+/*   Updated: 2023/07/27 12:21:58 by mjuin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 #include <cstdlib>
 #include <ctime>
 #include <algorithm>
+#include <cerrno>
 
 class PmergeMe
 {
@@ -28,13 +29,26 @@ class PmergeMe
 		~PmergeMe();
 		PmergeMe &operator=(const PmergeMe&);
 	private:
+		class Pair
+		{
+			private:
+				Pair(const Pair&src);
+				Pair &operator=(const Pair&);
+				long int _min;
+				long int _max;
+				unsigned int _index;
+			public:
+				~Pair();
+				Pair(int min, int max, size_t index);
+				long int getMax();
+				long int getMin();
+				unsigned int getIndex();
+				void setIndex();
+		};
 		PmergeMe();
 		float sortDeque();
 		float sortVector();
-		void RecursiveSort(std::vector<unsigned int> *vectorB, int size);
-		void InsertSort(std::vector<unsigned int> *vectorB);
-		void RecursiveSort(std::deque<unsigned int> *dequeB, int size);
-		void InsertSort(std::deque<unsigned int> *dequeB);
+		void sortPairMax(std::deque<Pair> pairdeque);
 		void printValue(std::string message);
 		std::deque<unsigned int> _deque;
 		std::vector<unsigned int> _vector;

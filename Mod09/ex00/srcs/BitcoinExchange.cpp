@@ -73,6 +73,8 @@ BitcoinExchange::BitcoinExchange(std::string path)
 		}
 		_bitcoinValues[date] = value;
 	}
+	if (this->_bitcoinValues.size() == 0)
+		throw std::runtime_error("Error ! Empty Database !");
 }
 
 float BitcoinExchange::getValue(st_time date, float quantity)
@@ -84,6 +86,8 @@ float BitcoinExchange::getValue(st_time date, float quantity)
 		{
 			if (it != this->_bitcoinValues.begin())
 				it--;
+			else if (((*it).first < date) == false)
+				throw std::runtime_error("Error ! Date is anterior to first bitcoin value in database !");
 			return (quantity * (*it).second);
 		}
 	}
@@ -191,8 +195,21 @@ std::string BitcoinExchange::Exchange(std::string line)
 	{
 		throw std::runtime_error(e.what());
 	}
+	float valuated;
 	std::stringstream s;
-	float valuated = getValue(date, Quantity);
+	if (this->_bitcoinValues.size() == 1)
+	{
+		if (((*this->_bitcoinValues.begin()).first <= date) == false)
+		{
+			throw std::runtime_error("Error ! Date is anterior to first bitcoin value in database !");
+		}
+		else
+		{
+			valuated = Quantity * (*this->_bitcoinValues.begin()).second;
+		}
+	}
+	else
+		valuated = getValue(date, Quantity);
 	s << str_date << " => " << Quantity << " = " << valuated;
 	return (s.str());
 }

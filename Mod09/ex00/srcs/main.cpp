@@ -6,7 +6,7 @@
 /*   By: mjuin <mjuin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 09:57:48 by mjuin             #+#    #+#             */
-/*   Updated: 2023/06/15 15:24:15 by mjuin            ###   ########.fr       */
+/*   Updated: 2023/07/25 13:38:17 by mjuin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ int main( int ac, char **av )
 	BitcoinExchange btc;
 	try
 	{
-		btc = (BitcoinExchange("Data/data.csv"));
+		btc = (BitcoinExchange("data.csv"));
 	}
 	catch(const std::exception& e)
 	{

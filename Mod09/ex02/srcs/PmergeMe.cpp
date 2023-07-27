@@ -1,125 +1,52 @@
-#include <PmergeMe.hpp>
+#include "../includes/PmergeMe.hpp"
+#include "PmergeMe.hpp"
 
 PmergeMe::PmergeMe()
 {
 
 }
 
-void PmergeMe::InsertSort(std::deque<unsigned int> *dequeB)
-{
-	std::deque<unsigned int>::iterator it2 = (*dequeB).end();
-	
-	for (size_t i = 0; i < _deque.size() - 1; i += 2)
-	{
-		std::deque<unsigned int>::iterator it = (*dequeB).begin();
-		while (it != it2 && *it > _deque[i])
-		{
-			it++;
-		}
-		(*dequeB).insert(it, _deque[i]);
-	}
-}
 
-void PmergeMe::RecursiveSort(std::deque<unsigned int> *dequeB, int size)
-{
-	if (size < 2)
-		return ;
-	RecursiveSort(dequeB, size - 1);
-	unsigned int nl = (*dequeB)[size - 1];
-	unsigned int nl1;
-	for (nl1 = size - 2; nl1 != 0 && (*dequeB)[nl1] <= nl; nl1--)
-	{
-		(*dequeB)[nl1 + 1] = (*dequeB)[nl1];
-	}
-	(*dequeB)[nl1 + 1] = nl;
-}
 
 float PmergeMe::sortDeque()
 {
 	clock_t startTV = clock();
-	std::deque<unsigned int> dequeB;	
-	int						last = -1;
-
-	if (_deque.size() % 2 != 0)
-		last = _deque[_deque.size() - 1];
-	for (size_t i = 0; i < _deque.size(); i += 2)
-	{
-		if (_deque[i] > _deque[i + 1])
-			std::swap(_deque[i], _deque[i + 1]);
-	}
-	for (size_t i = 1; i < _deque.size(); i += 2)
-	{
-		dequeB.push_back(_deque[i]);
-	}
-	if (last != -1)
-		dequeB.push_back(last);
-	RecursiveSort(&dequeB, dequeB.size());
-	InsertSort(&dequeB);
-	std::reverse(dequeB.begin(), dequeB.end());
-	_deque = dequeB;
+	std::deque<Pair> pairdeque;
+	int last = -1;
+	if (this->_deque.size() % 2 != 0)
+		last = this->_deque[this->_deque.size() - 1];
+	for (size_t i = 0; i < this->_deque.size(); i += 2)
+		pairdeque.push_back(Pair(this->_deque[i], this->_deque[i + 1], i / 2));
+	sortPairMax(pairdeque);
 	return ((float)(clock() - startTV)/CLOCKS_PER_SEC);
-}
-
-void PmergeMe::InsertSort(std::vector<unsigned int> *vectorB)
-{
-	std::vector<unsigned int>::iterator it2 = (*vectorB).end();
-	
-	for (size_t i = 0; i < _vector.size() - 1; i += 2)
-	{
-		std::vector<unsigned int>::iterator it = (*vectorB).begin();
-		while (it != it2 && (*it) > _vector[i])
-		{
-			it++;
-		}
-		(*vectorB).insert(it, _vector[i]);
-	}
-}
-
-void PmergeMe::RecursiveSort(std::vector<unsigned int> *vectorB, int size)
-{
-	if (size < 2)
-		return ;
-	RecursiveSort(vectorB, size - 1);
-	unsigned int nl = (*vectorB)[size - 1];
-	unsigned int nl1;
-	for (nl1 = size - 2; nl1 != 0 && (*vectorB)[nl1] <= nl; nl1--)
-	{
-		(*vectorB)[nl1 + 1] = (*vectorB)[nl1];
-	}
-	(*vectorB)[nl1 + 1] = nl;
 }
 
 float PmergeMe::sortVector()
 {
 	clock_t startTV = clock();
-	std::vector<unsigned int> vectorB;	
-	int						last = -1;
 
-	if (_vector.size() % 2 != 0)
-		last = _vector[_vector.size() - 1];
-	for (size_t i = 0; i < _vector.size(); i += 2)
-	{
-		if (_vector[i] > _vector[i + 1])
-			std::swap(_vector[i], _vector[i + 1]);
-	}
-	for (size_t i = 1; i < _vector.size(); i += 2)
-	{
-		vectorB.push_back(_vector[i]);
-	}
-	if (last != -1)
-		vectorB.push_back(last);
-	RecursiveSort(&vectorB, vectorB.size());
-	InsertSort(&vectorB);
-	std::reverse(vectorB.begin(), vectorB.end());
-	_vector = vectorB;
 	return ((float)(clock() - startTV)/CLOCKS_PER_SEC);
+}
+
+void PmergeMe::sortPairMax(std::deque<Pair> pairdeque, size_t size)
+{
+	if (size <= 1)
+		return ;
+	int pos;
+
+	for (pos = size - 2; pos >= 0 && ((*pairdeque)[pos]).getMin() > nl; pos--)
+	{
+		(*pairdeque)[pos + 1] = (*pairdeque)[pos];
+		(*pairdeque)[pos + 1]
+	}
+	
 }
 
 void PmergeMe::printValue(std::string message)
 {
-	std::deque<unsigned int>::iterator it2 = _deque.end();
+	std::vector<unsigned int>::iterator it2 = _vector.end();
 	std::cout << message;
-	for (std::deque<unsigned int>::iterator it = _deque.begin() ; it != it2; it++)
+	for (std::vector<unsigned int>::iterator it = _vector.begin() ; it != it2; it++)
 		std::cout << " " << *it;
 	std::cout << std::endl;
 }
@@ -136,9 +63,15 @@ PmergeMe::PmergeMe(int arg_count, char **av)
 			if (isdigit(av[i][y]) == false)
 				throw std::runtime_error("Error ! Non number argument in list");
 		}
-		int atoied = std::atoi(av[i]);
-		if (atoied < 0)
+		if (y == 0)
+			throw std::runtime_error("Error ! Empty argument in list");
+		long int atoied = std::strtol(av[i], NULL, 10);
+		if (errno == ERANGE)
+			throw std::runtime_error("Error ! An argument in list may cause an overflow");
+		else if (atoied < 0)
 			throw std::runtime_error("Error ! Negative argument in list");
+		else if (atoied > 2147483647)
+			throw std::runtime_error("Error ! An argument in list is superior to int max");
 		_deque.push_back(atoied);
 		_vector.push_back(atoied);
 	}
@@ -166,4 +99,25 @@ PmergeMe &PmergeMe::operator=(const PmergeMe &src)
 	this->_deque = src._deque;
 	this->_vector = src._vector;
 	return (*this);
+}
+
+PmergeMe::Pair::Pair(int min, int max, size_t index)
+{
+	this->_min = (min < max) ? min : max;
+	this->_max = (min <= max) ? max : min;
+	this->_index = index;
+}
+
+long int PmergeMe::Pair::getMax()
+{
+    return this->_max;
+}
+
+long int PmergeMe::Pair::getMin()
+{
+    return this->_min;
+}
+
+void PmergeMe::Pair::setIndex()
+{
 }
