@@ -241,7 +241,7 @@ PmergeMe::PmergeMe(int arg_count, char **av)
 	printValue("After =", 0, false);
 	std::cout << "Time to process a range of " << _deque.size() << " elements with std::deque : " << t_deque << " ms\n";
 	std::cout << "Time to process a range of " << _vector.size() << " elements with std::vector : " << t_vector << " ms\n";
-	//Verify();
+	Verify();
 }
 
 void PmergeMe::printValue(std::string message, int Container = 0, bool all = true)
@@ -250,8 +250,14 @@ void PmergeMe::printValue(std::string message, int Container = 0, bool all = tru
 		return;
 	if (Container == 0)
 	{
-
-		std::vector<unsigned int>::iterator it2 = (all == false && _vector.size() >= 4) ? _vector.begin() += 4 : _vector.end();
+		std::vector<unsigned int>::iterator it2;
+		if (all == false && _vector.size() >= 4)
+		{
+			it2 = _vector.begin();
+			std::advance(it2, 4);
+		}
+		else
+			it2 = _vector.end();
 		std::cout << message;
 		std::vector<unsigned int>::iterator it;
 		for (it = _vector.begin(); it != it2; it++)
@@ -262,7 +268,14 @@ void PmergeMe::printValue(std::string message, int Container = 0, bool all = tru
 	}
 	else
 	{
-		std::deque<unsigned int>::iterator it2 = (all == false && _deque.size() >= 4) ? _deque.begin() += 4 : _deque.end();
+		std::deque<unsigned int>::iterator it2;
+		if (all == false && _vector.size() >= 4)
+		{
+			it2 = _deque.begin();
+			std::advance(it2, 4);
+		}
+		else
+			it2 = _deque.end();
 		std::cout << message;
 		std::deque<unsigned int>::iterator it;
 		for (it = _deque.begin(); it != it2; it++)

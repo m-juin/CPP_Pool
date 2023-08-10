@@ -6,7 +6,7 @@
 /*   By: mjuin <mjuin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 14:29:32 by mjuin             #+#    #+#             */
-/*   Updated: 2023/03/22 12:42:50 by mjuin            ###   ########.fr       */
+/*   Updated: 2023/08/10 12:46:01 by mjuin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,17 +38,17 @@ void Harl::complain(std::string level)
 			std::cout << "[ DEBUG ]" << std::endl;
 			(this->*functionArray[0])();
 			std::cout << std::endl;
-			__attribute__ ((fallthrough));
+			//__attribute__ ((fallthrough));
 		case 2:
 			std::cout << "[ INFO ]" << std::endl;
 			(this->*functionArray[1])();
 			std::cout << std::endl;
-			__attribute__ ((fallthrough));
+			//__attribute__ ((fallthrough));
 		case 3:
 			std::cout << "[ WARNING ]" << std::endl;
 			(this->*functionArray[2])();
 			std::cout << std::endl;
-			__attribute__ ((fallthrough));
+			//__attribute__ ((fallthrough));
 		case 4:
 			std::cout << "[ ERROR ]" << std::endl;
 			(this->*functionArray[3])();

@@ -107,12 +107,25 @@ BitcoinExchange::st_time BitcoinExchange::getdatevalue(std::string value)
 	ltm.month = std::atoi(value.substr(index + 1, index + 3).c_str());
 	ltm.day = std::atoi(value.substr(index + 4, index + 6).c_str());
 	if (ltm.month > 12 || ((ltm.month == 1 || ltm.month == 3 || ltm.month == 5 || ltm.month == 7 || ltm.month == 8 || ltm.month == 10 || ltm.month == 12) && ltm.day > 31) ||
-		((ltm.month == 2 || ltm.month == 4 || ltm.month == 6 || ltm.month == 9 || ltm.month == 11) && ltm.day > 30))
+		((ltm.month == 4 || ltm.month == 6 || ltm.month == 9 || ltm.month == 11) && ltm.day > 30))
 	{
 		ltm.day = -2;
 		return (ltm);
 	}
-	else if (ltm.day < 0 || ltm.month < 0 || ltm.year < 0)
+	if (ltm.month == 2)
+	{
+		if (((ltm.year % 400 != 0) && (ltm.year % 4 != 0 || ltm.year % 100 == 0)) && ltm.day > 28)
+		{
+			ltm.day = -2;
+			return (ltm);
+		}
+		else if (ltm.day > 29)
+		{
+			ltm.day = -2;
+			return (ltm);
+		}
+	}
+	if (ltm.day < 0 || ltm.month < 0 || ltm.year < 0)
 	{
 		ltm.day = 0;
 		return (ltm);
