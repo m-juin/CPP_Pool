@@ -91,6 +91,7 @@ float BitcoinExchange::getValue(st_time date, float quantity)
 			return (quantity * (*it).second);
 		}
 	}
+	it2--;
 	return quantity * (*it2).second;
 }
 
