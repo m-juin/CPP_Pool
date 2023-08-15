@@ -54,12 +54,12 @@ BitcoinExchange::BitcoinExchange(std::string path)
 			std::string ret = ("Error: no value in data line => " + line);
 			throw std::runtime_error(ret);
 		}
-		date = getdatevalue(line.substr(0, index));
+		date = getDateValue(line.substr(0, index));
 		if (date.day == -1)
 			throw BitcoinExchange::InvalidDateFormatException();
 		else if (date.day == -2)
 			throw BitcoinExchange::InvalidDateException();
-		float value;
+		double value;
 		try
 		{
 			value = std::strtof(line.substr(index + 1, line.npos).c_str(), NULL);
@@ -77,10 +77,10 @@ BitcoinExchange::BitcoinExchange(std::string path)
 		throw std::runtime_error("Error ! Empty Database !");
 }
 
-float BitcoinExchange::getValue(st_time date, float quantity)
+double BitcoinExchange::getValue(st_time date, double quantity)
 {
-	std::map<st_time, float>::iterator it2 = this->_bitcoinValues.end();
-	for (std::map<st_time, float>::iterator it = this->_bitcoinValues.begin(); it != it2; it++)
+	std::map<st_time, double>::iterator it2 = this->_bitcoinValues.end();
+	for (std::map<st_time, double>::iterator it = this->_bitcoinValues.begin(); it != it2; it++)
 	{
 		if (((*it).first <= date) == false)
 		{
@@ -95,7 +95,7 @@ float BitcoinExchange::getValue(st_time date, float quantity)
 	return quantity * (*it2).second;
 }
 
-BitcoinExchange::st_time BitcoinExchange::getdatevalue(std::string value)
+BitcoinExchange::st_time BitcoinExchange::getDateValue(std::string value)
 {
 	BitcoinExchange::st_time ltm;
 	if (std::isdigit(value[0]) == false || std::isdigit(value[1]) == false || std::isdigit(value[2]) == false || std::isdigit(value[3]) == false || value[4] != '-' || std::isdigit(value[5]) == false || std::isdigit(value[6]) == false || value[7] != '-' || std::isdigit(value[8]) == false || std::isdigit(value[9]) == false || value[10] != '\0')
@@ -184,13 +184,13 @@ std::string BitcoinExchange::Exchange(std::string line)
 		throw std::runtime_error(ret);
 	}
 	str_date = line.substr(0, sep);
-	st_time date = getdatevalue(str_date);
+	st_time date = getDateValue(str_date);
 	if (date.day <= 0)
 	{
 		ret = ("Error: Bad input => " + str_date);
 		throw std::runtime_error(ret);
 	}
-	float Quantity = 0;
+	double Quantity = 0;
 	try
 	{
 		Quantity = std::atof(line.substr(sep + 3, line.npos).c_str());
@@ -209,7 +209,7 @@ std::string BitcoinExchange::Exchange(std::string line)
 	{
 		throw std::runtime_error(e.what());
 	}
-	float valuated;
+	double valuated;
 	std::stringstream s;
 	if (this->_bitcoinValues.size() == 1)
 	{
@@ -224,7 +224,7 @@ std::string BitcoinExchange::Exchange(std::string line)
 	}
 	else
 		valuated = getValue(date, Quantity);
-	s << str_date << " => " << Quantity << " = " << valuated;
+	s << str_date << " => " << Quantity << " = " << std::fixed << std::setprecision(2) << valuated;
 	return (s.str());
 }
 BitcoinExchange::BitcoinExchange(const BitcoinExchange &src)

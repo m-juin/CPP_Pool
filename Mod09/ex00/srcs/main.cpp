@@ -6,24 +6,11 @@
 /*   By: mjuin <mjuin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 09:57:48 by mjuin             #+#    #+#             */
-/*   Updated: 2023/07/25 13:38:17 by mjuin            ###   ########.fr       */
+/*   Updated: 2023/08/15 10:13:22 by mjuin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "BitcoinExchange.hpp"
-
-bool isValidExtension(std::string filepath)
-{
-	size_t	pos;
-	size_t	pos2;
-	pos = filepath.find_last_of(".");
-	if (pos == filepath.npos)
-		return (false);
-	pos2 = filepath.find_last_of(".csv");
-	if (pos2 >= 4 && pos == (pos2 - 3) && (filepath.length() - 1 == pos2))
-		return (true);
-	return (false);
-}
 
 bool checkFileValidity(int ac, char **av)
 {
@@ -34,11 +21,6 @@ bool checkFileValidity(int ac, char **av)
 		return (false);
 	}
 	filepath = std::string(av[1]);
-	if (isValidExtension(filepath) == false)
-	{
-		std::cerr << "invalid file extension \".csv\" expected" << std::endl;
-		return (false);
-	}
 	std::ifstream file(filepath.c_str());
 	if (file.is_open() == false)
 	{

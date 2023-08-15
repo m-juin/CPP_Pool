@@ -6,7 +6,7 @@
 /*   By: mjuin <mjuin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 10:57:30 by mjuin             #+#    #+#             */
-/*   Updated: 2023/06/16 14:10:04 by mjuin            ###   ########.fr       */
+/*   Updated: 2023/08/15 11:16:24 by mjuin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,8 @@
 
 #include <stack> 
 #include <iostream>
-
+#include <climits>
+#include <algorithm>
 class RPN
 {
 	public:
@@ -27,6 +28,7 @@ class RPN
 		RPN(const RPN&src);
 		RPN &operator=(const RPN&);
 		std::stack<int> _value;
+		bool calcul(long long num1, long long num2, char op);
 };
 
 #endif

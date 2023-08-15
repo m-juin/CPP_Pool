@@ -4,14 +4,62 @@ RPN::RPN()
 {
 }
 
+bool RPN::calcul(long long num1, long long num2, char op)
+{
+	long long result = 0;
+	switch (op)
+	{
+		case '+':
+		{
+			result = (num2 + num1);
+			break;
+		}
+		case '-':
+		{
+			result = (num2 - num1);
+			break;
+		}
+		case '/':
+		{
+			if (num1 == 0)
+			{
+				std::cerr << "Division by 0 invalid !" << std::endl;
+				return (false);
+			}
+			result = (num2 / num1);
+			break;
+		}
+		case '*':
+		{
+			result = (num2 * num1);
+			break;
+		}
+		default:
+		{
+			std::cerr << "invalid operator \'" << op << "\'" << std::endl;
+			return (false);
+		}
+	}
+	if (result > 2147483647 || result < -2147483648)
+	{
+		std::cerr << "The calculation will exceed the limit of an int and cause an overflow (" << num2 << " " << op << " " << num1 << " = " << result << ")" << std::endl;
+		return (false);
+	}
+	_value.push(result);
+	return (true);
+}
+
 bool RPN::calculate(std::string data)
 {
 	int pos = -1;
-
+	int spacecount = 0;
 	while (data[++pos] != '\0')
 	{
 		if (data[pos] == ' ')
+		{
+			spacecount++;
 			continue;
+		}
 		else if (data[pos] >= '0' && data[pos] <= '9')
 		{
 			_value.push(data[pos] - '0');
@@ -27,39 +75,8 @@ bool RPN::calculate(std::string data)
 			_value.pop();
 			int num2 = _value.top();
 			_value.pop();
-			switch (data[pos])
-			{
-				case '+':
-				{
-					_value.push(num2 + num1);
-					break;
-				}
-				case '-':
-				{
-					_value.push(num2 - num1);
-					break;
-				}
-				case '/':
-				{
-					if (num1 == 0)
-					{
-						std::cout << "Division by 0 invalid !" << std::endl;
-						return (false);
-					}
-					_value.push(num2 / num1);
-					break;
-				}
-				case '*':
-				{
-					_value.push(num2 * num1);
-					break;
-				}
-				default:
-				{
-					std::cout << "invalid operator \'" << data[pos] << "\'" << std::endl;
-					return (false);
-				}
-			}
+			if (calcul(num1, num2, data[pos]) == false)
+				return (false);
 		}
 	}
 	if (_value.size() != 1)

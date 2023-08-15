@@ -6,7 +6,7 @@
 /*   By: mjuin <mjuin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 09:57:48 by mjuin             #+#    #+#             */
-/*   Updated: 2023/06/16 14:13:40 by mjuin            ###   ########.fr       */
+/*   Updated: 2023/08/15 11:01:29 by mjuin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,25 @@
 
 int main( int ac, char **av ) 
 {
-	if (ac < 2)
+	if (ac != 2)
 	{
-		std::cout << "Need calculation as argument 1" << std::endl;
+		std::cout << "Need calculation as first on only argument." << std::endl;
 		return 1;
 	}
 	RPN data;
-	if (data.calculate(std::string(av[1])) == true)
+	std::string base(av[1]);
+	std::string output;
+	if (data.calculate(base) == true)
 	{
-		std::cout << "RPN : \"" << av[1] << "\" = " << data.getTop() << std::endl;
+		base.erase(std::remove(base.begin(), base.end(), ' '), base.end());
+  		for (std::string::iterator it = base.begin(); it != base.end(); ++it)
+		{
+        	output += *it;
+        	if (it + 1 != base.end()) {
+            	output += ' ';
+        	}
+    	}
+		std::cout << "RPN : \"" << output << "\" = " << data.getTop() << std::endl;
 		return 0;
 	}
 	return 1;

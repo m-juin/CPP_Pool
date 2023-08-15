@@ -9,11 +9,11 @@
 /*                                                                                        */
 /******************************************************************************************/
 
-long PmergeMe::sortVector()
+long long PmergeMe::sortVector()
 {
     struct timeval time_now;
     gettimeofday(&time_now, NULL);
-    time_t msecs_time = (time_now.tv_sec * 1000) + (time_now.tv_usec / 1000);
+    time_t msecs_time = (time_now.tv_sec * 1000000) + (time_now.tv_usec);
 	std::vector<Pair> pairvector;
 	int last = -1;
 	if (this->_vector.size() % 2 != 0)
@@ -32,7 +32,7 @@ long PmergeMe::sortVector()
 		BinaryInsertVector(last, 0, _vector.size());
     struct timeval time_now2;
     gettimeofday(&time_now2, NULL);
-    time_t msecs_time2 = (time_now2.tv_sec * 1000) + (time_now2.tv_usec / 1000);
+    time_t msecs_time2 = (time_now2.tv_sec * 1000000) + (time_now2.tv_usec);
 	return (msecs_time2 - msecs_time);
 }
 
@@ -61,7 +61,11 @@ void PmergeMe::insertSort(std::vector<Pair> pairvector)
 	}
 	unsigned int sequencePrevious1 = 0;
 	unsigned int sequencePrevious2 = 0;
-	unsigned int sequenceSize = 2;
+	unsigned int sequenceSize;
+	if (pairvector.size() == 2)
+		sequenceSize = 1;
+	else
+		sequenceSize = 2;
 	size_t ElementNumber = pairvector.size() - 1;
 	unsigned int cur_element = 0;
 	while (cur_element != ElementNumber)
@@ -110,11 +114,11 @@ void PmergeMe::BinaryInsertVector(unsigned int element, unsigned int min, unsign
 /*                                                                                        */
 /******************************************************************************************/
 
-long PmergeMe::sortDeque()
+long long PmergeMe::sortDeque()
 {
     struct timeval time_now;
     gettimeofday(&time_now, NULL);
-    time_t msecs_time = (time_now.tv_sec * 1000) + (time_now.tv_usec / 1000);
+    time_t msecs_time = (time_now.tv_sec * 1000000) + (time_now.tv_usec);
 	std::deque<Pair> pairdeque;
 	int last = -1;
 	if (this->_deque.size() % 2 != 0)
@@ -130,10 +134,10 @@ long PmergeMe::sortDeque()
 		_deque.push_back(pairdeque[i].getMax());
 	insertSort(pairdeque);
 	if (last != -1)
-		BinaryInsertDeque(last, 0, _deque.size());
+		BinaryInsertDeque(last, 0, _deque.size() + 1);
     struct timeval time_now2;
     gettimeofday(&time_now2, NULL);
-    time_t msecs_time2 = (time_now2.tv_sec * 1000) + (time_now2.tv_usec / 1000);
+    time_t msecs_time2 = (time_now2.tv_sec * 1000000) + (time_now2.tv_usec);
 	return (msecs_time2 - msecs_time);
 }
 
@@ -162,7 +166,11 @@ void PmergeMe::insertSort(std::deque<Pair> pairdeque)
 	}
 	unsigned int sequencePrevious1 = 0;
 	unsigned int sequencePrevious2 = 0;
-	unsigned int sequenceSize = 2;
+	unsigned int sequenceSize;
+	if (pairdeque.size() == 2)
+		sequenceSize = 1;
+	else
+		sequenceSize = 2;
 	size_t ElementNumber = pairdeque.size() - 1;
 	unsigned int cur_element = 0;
 	while (cur_element != ElementNumber)
@@ -239,8 +247,8 @@ PmergeMe::PmergeMe(int arg_count, char **av)
 	float t_vector = sortVector();
 	float t_deque = sortDeque();
 	printValue("After =", 0, false);
-	std::cout << "Time to process a range of " << _deque.size() << " elements with std::deque : " << t_deque << " ms\n";
-	std::cout << "Time to process a range of " << _vector.size() << " elements with std::vector : " << t_vector << " ms\n";
+	std::cout << "Time to process a range of " << _deque.size() << " elements with std::deque : " << t_deque << " µs.\n";
+	std::cout << "Time to process a range of " << _vector.size() << " elements with std::vector : " << t_vector << " µs.\n";
 	Verify();
 }
 
@@ -325,7 +333,7 @@ void PmergeMe::Verify()
 			return ;
 		}
 	}
-	std::cout << "\033[1;32m" << "All si good for both container" << "\033[0m" << std::endl;
+	std::cout << "\033[1;32m" << "All is good for both container" << "\033[0m" << std::endl;
 }
 
 /******************************************************************************************/

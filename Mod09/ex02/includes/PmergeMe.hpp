@@ -6,7 +6,7 @@
 /*   By: mjuin <mjuin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 10:29:31 by mjuin             #+#    #+#             */
-/*   Updated: 2023/07/27 18:09:39 by mjuin            ###   ########.fr       */
+/*   Updated: 2023/08/15 11:28:33 by mjuin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,8 @@ class PmergeMe
 		};
 	private:
 		PmergeMe();
-		long sortDeque();
-		long sortVector();
+		long long sortDeque();
+		long long sortVector();
 		void sortPairMax(std::deque<Pair> *pairdeque, size_t size);
 		void sortPairMax(std::vector<Pair> *pairdeque, size_t size);
 		void printValue(std::string message, int Container, bool all);
