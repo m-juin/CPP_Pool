@@ -57,7 +57,7 @@ BitcoinExchange::BitcoinExchange(std::string path)
 		date = getDateValue(line.substr(0, index));
 		if (date.day == -1)
 			throw BitcoinExchange::InvalidDateFormatException();
-		else if (date.day == -2)
+		else if (date.day == -2 || date.day == 0)
 			throw BitcoinExchange::InvalidDateException();
 		double value;
 		try
@@ -126,7 +126,7 @@ BitcoinExchange::st_time BitcoinExchange::getDateValue(std::string value)
 			return (ltm);
 		}
 	}
-	if (ltm.day < 0 || ltm.month < 0 || ltm.year < 0)
+	if (ltm.day <= 0 || ltm.month <= 0 || ltm.year < 0)
 	{
 		ltm.day = 0;
 		return (ltm);
