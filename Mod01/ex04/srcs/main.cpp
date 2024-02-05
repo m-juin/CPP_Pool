@@ -6,7 +6,7 @@
 /*   By: mjuin <mjuin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 11:20:17 by mjuin             #+#    #+#             */
-/*   Updated: 2023/03/01 14:16:34 by mjuin            ###   ########.fr       */
+/*   Updated: 2023/04/03 14:29:39 by mjuin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,18 +18,18 @@ bool CheckArg(int ac, char **av)
 {
 	if (ac != 4)
 	{
-		std::cerr << "Wrong number of argument !" << std::endl;
+		std::cout << "Wrong number of argument !" << std::endl;
 		return (false);
 	}
 	if( av[2][0] == '\0')
 	{
-		std::cerr << "Cannot replace a \'\\0\'" << std::endl;
+		std::cout << "Cannot replace a \'\\0\'" << std::endl;
 		return (false);
 	}
 	std::ifstream file(av[1]);
 	if (!file.is_open())
 	{
-		std::cerr << "The " << av[1] << " file doesn't look like it exists or could not have been opened." << std::endl;
+		std::cout << "The " << av[1] << " file doesn't look like it exists or could not have been opened." << std::endl;
 		return (false);
 	}
 	file.close();
@@ -84,7 +84,9 @@ void	Copy(char **av)
 	while (infile.peek() != std::ifstream::traits_type::eof())
 	{
 		std::getline(infile, readedFile);
-		outfile << replace(readedFile, av[2], av[3]) << std::endl;
+		if (infile.peek() != std::ifstream::traits_type::eof())
+			readedFile += '\n';
+		outfile << replace(readedFile, av[2], av[3]);
 	}
 	infile.close();
 	outfile.close();

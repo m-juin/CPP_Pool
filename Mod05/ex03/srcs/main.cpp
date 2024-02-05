@@ -6,7 +6,7 @@
 /*   By: mjuin <mjuin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 10:18:01 by mjuin             #+#    #+#             */
-/*   Updated: 2023/06/02 14:17:43 by mjuin            ###   ########.fr       */
+/*   Updated: 2023/06/23 11:40:47 by mjuin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void tryBureaucratBase()
 	try
 	{
 		Bureaucrat *toto = new Bureaucrat("toto", 75);
-		std::cout << toto << std::endl;
+		std::cout << *toto << std::endl;
 		delete(toto);
 	}
 	catch (std::exception &e)

@@ -6,7 +6,7 @@
 /*   By: mjuin <mjuin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 14:29:32 by mjuin             #+#    #+#             */
-/*   Updated: 2023/03/02 13:49:52 by mjuin            ###   ########.fr       */
+/*   Updated: 2023/04/03 14:31:41 by mjuin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void Harl::complain(std::string level)
 			break;
 	}
 	if (index == 4)
-		std::cerr << "Level not Found" << std::endl;
+		std::cout << "Level not Found" << std::endl;
 	else
 		(this->*functionArray[index])();
 	

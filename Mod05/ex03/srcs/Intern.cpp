@@ -37,6 +37,7 @@ AForm *Intern::makeForm(std::string form_name, std::string form_target)
 		std::cerr << "There is no form named " << form_name << std::endl;
 		return (NULL);
 	}
+	std::cout << "Intern creates " << form_name << std::endl;
 	formptr = (this->*functionArray[index])(form_target);
 	return(formptr);
 

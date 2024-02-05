@@ -6,7 +6,7 @@
 #    By: mjuin <mjuin@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/15 15:23:54 by mjuin             #+#    #+#              #
-#    Updated: 2023/06/29 10:55:37 by mjuin            ###   ########.fr        #
+#    Updated: 2023/06/02 12:47:33 by mjuin            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,10 +24,12 @@ OBJ =	${SRC:.cpp=.o}
 all:	${NAME}
 
 $(NAME): ${OBJ}
-	${CC} ${CFLAGS} -o ${NAME} ${OBJ}
+	@${CC} ${CFLAGS} -o ${NAME} ${OBJ}
+	@printf '\e[1;37m%-6s\e[m' "Compilation complete"
 
 %.o: %.cpp
-	${CC} ${CFLAGS} -c $< -o ${<:.cpp=.o}
+	@printf "Compiling .cpp to .o \r"
+	@${CC} ${CFLAGS} -c $< -o ${<:.cpp=.o}
 
 clean:
 	@n=1; \

@@ -6,7 +6,7 @@
 /*   By: mjuin <mjuin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 11:20:17 by mjuin             #+#    #+#             */
-/*   Updated: 2023/03/02 14:31:43 by mjuin            ###   ########.fr       */
+/*   Updated: 2023/04/03 14:33:10 by mjuin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int main(int ac, char **av)
 {
 	if (ac < 2 || ac > 2)
 	{
-		std::cerr << "Wrong Amount of argument !" << std::endl;
+		std::cout << "Wrong Amount of argument !" << std::endl;
 		return (1);
 	}
 	Harl newHarl;

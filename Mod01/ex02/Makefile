@@ -12,7 +12,7 @@
 
 CC =	c++
 
-CFLAGS =	-g -Werror -Wextra -Wall -std=c++98 -I./includes
+CFLAGS =	-g -Werror -Wextra -Wall -std=c++98
 
 NAME =	Brain
 

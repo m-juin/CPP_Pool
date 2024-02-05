@@ -11,8 +11,8 @@ int main(void)
 	std::cout << "a++ = " << a++ << std::endl;
 	std::cout << "a = " << a << std::endl;
 	std::cout << "b = " << b << std::endl;
-	std::cout << Fixed::max(a, b) << std::endl;
-	std::cout << Fixed::min(a, b) << std::endl;
+	std::cout << "Max = " << Fixed::max(a, b) << std::endl;
+	std::cout << "Min = " << Fixed::min(a, b) << std::endl;
 	std::cout << "a + b = " <<  a + b << std::endl;
 	std::cout << "a - b = " <<  a - b << std::endl;
 	std::cout << "a * b = " <<  a * b << std::endl;

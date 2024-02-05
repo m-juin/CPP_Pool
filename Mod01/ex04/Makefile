@@ -6,13 +6,13 @@
 #    By: mjuin <mjuin@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/15 15:23:54 by mjuin             #+#    #+#              #
-#    Updated: 2023/03/01 14:23:17 by mjuin            ###   ########.fr        #
+#    Updated: 2023/04/03 14:30:08 by mjuin            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC =	c++
 
-CFLAGS =	-g -Werror -Wextra -Wall -std=c++98 -I./includes
+CFLAGS =	-g -Werror -Wextra -Wall -std=c++98
 
 NAME =	Sed
 
@@ -54,4 +54,4 @@ fclean:	clean
 
 re:	fclean all
 
-.PHONY:	all clean fclean re 
+.PHONY:	all clean fclean re
