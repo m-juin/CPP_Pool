@@ -22,7 +22,7 @@ The CPP pool is a group of smalls "projects" present in the 42 program fifth and
 # Constraints
 According to the subject there is 4 constraints for this project:
 *  All files must be compilable with the flag ``-std=c++98``.
-*  the ``using namespace <ns_name>`` and ``friend`` keywords are forbidden
+*  The ``using namespace <ns_name>`` and ``friend`` keywords are forbidden
 *  From Module 02 to Module 09, all classes must be designed in the Orthodox Canonical Form, except when explicitely stated otherwise
 *  STL(containers and algorithm functions) only allowed in module 08 and 09
 
