@@ -21,16 +21,13 @@ The CPP pool is a group of smalls "projects" present in the 42 program fifth and
 
 # Constraints
 According to the subject there is 4 constraints for this project:
-*  All files must be compilable with the flag ``-std=c++98``.
-*  The ``using namespace <ns_name>`` and ``friend`` keywords are forbidden
+*  All files can be compiled with the flag ``-std=c++98``.
+*  the ``using namespace <ns_name>`` and ``friend`` keywords are forbidden
 *  From Module 02 to Module 09, all classes must be designed in the Orthodox Canonical Form, except when explicitely stated otherwise
-*  STL(containers and algorithm functions) only allowed in modules 08 and 09
+*  STL(containers and algorithm functions) only allowed in module 08 and 09
 
 
 # Modules
-
-
-
 
 | Module | Description | Note |
 |:------:| ----------- | :----: |
@@ -44,3 +41,27 @@ According to the subject there is 4 constraints for this project:
 |   **07**   | C++ templates        | <img alt="Module 07" src="https://img.shields.io/static/v1?label=&message=100+/+100&color=yellow&style=plastic"/> |
 |   **08**   | Templated containers, iterators, algorithms        | <img alt="Module 08" src="https://img.shields.io/static/v1?label=&message=100+/+100&color=yellow&style=plastic"/> |
 |   **09**   | STL        | <img alt="Module 09" src="https://img.shields.io/static/v1?label=&message=100+/+100&color=yellow&style=plastic"/> |
+
+
+# Usage
+
+Each module contains a folder for each exercise, and all exercises can be compiled by running the following commands from the corresponding folder.
+
+``make`` to compile the project executable.
+
+``make clean`` to clean all compiled files without the executable.
+
+``make fclean`` to clean all compiled files with the executable.
+
+``make re`` to fclean then make.
+
+## Exemple
+
+Here an exemple for the Module 00 ex00
+
+``` 
+$ cd /Mod00/ex00
+$ make
+$ . . .
+$ ./megaphone "Lorem ipsum"
+```
